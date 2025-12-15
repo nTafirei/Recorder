@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<methods>
+    <method name="Visa" type="VISA" impl="zimSwitchPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="Mastercard" type="MASTER_CARD" impl="zimSwitchPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="EchoCash" type="MOBILE_WALLET" impl="echoCashPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="One Money" type="MOBILE_WALLET" impl="oneMoneyPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="Mukuru" type="MOBILE_WALLET" impl="mukuruPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="Smile Cash" type="MOBILE_WALLET" impl="smileCashPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="false"/>
+    <method name="PayStream" type="SYSTEM_WALLET" impl="payStreamPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="false" implemented="true"/>
+    <method name="ZESA" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="City of Harare Water" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="Thuli" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="TotalEnergies" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="ZimGas" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="ABC Enterprises" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+    <method name="GG and Sons" type="MOBILE_WALLET" impl="ZESAPaymentService" clientId="PayStream"
+            url="http://localhost/test" apiKey="abcdefg" platform="dev" isMerchantMethod="true" implemented="false"/>
+</methods>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="vending_persistence_unit">
+        <class>com.marotech.vending.model.User</class>
+        <class>com.marotech.vending.model.Cart</class>
+        <class>com.marotech.vending.model.AgentFloat</class>
+        <class>com.marotech.vending.model.MasterFloat</class>
+        <class>com.marotech.vending.model.AppSession</class>
+        <class>com.marotech.vending.model.Attachment</class>
+        <class>com.marotech.vending.model.UserRole</class>
+        <class>com.marotech.vending.model.AuthUser</class>
+        <class>com.marotech.vending.model.Feature</class>
+        <class>com.marotech.vending.model.RewardPoints</class>
+        <class>com.marotech.vending.model.JDBCDataSource</class>
+        <class>com.marotech.vending.model.Notification</class>
+        <class>com.marotech.vending.model.LoyaltyRate</class>
+        <class>com.marotech.vending.model.Product</class>
+        <class>com.marotech.vending.model.ResetInfo</class>
+        <class>com.marotech.vending.model.Contract</class>
+        <class>com.marotech.vending.model.Showcase</class>
+        <class>com.marotech.vending.model.ChargeRate</class>
+        <class>com.marotech.vending.model.Comment</class>
+        <class>com.marotech.vending.model.Product</class>
+        <class>com.marotech.vending.model.Embedding</class>
+        <class>com.marotech.vending.model.LanguageModel</class>
+        <class>com.marotech.vending.model.Location</class>
+        <class>com.marotech.vending.model.Account</class>
+        <class>com.marotech.vending.model.AccountRecoveryInfo</class>
+        <class>com.marotech.vending.model.MobileWalletData</class>
+        <class>com.marotech.vending.model.Money</class>
+        <class>com.marotech.vending.model.Activity</class>
+        <class>com.marotech.vending.model.Address</class>
+        <class>com.marotech.vending.model.Passcode</class>
+        <class>com.marotech.vending.model.PayToAccountReport</class>
+        <class>com.marotech.vending.model.PayToCashReport</class>
+        <class>com.marotech.vending.model.AvailableBalance</class>
+        <class>com.marotech.vending.model.PaymentMethod</class>
+        <class>com.marotech.vending.model.Bank</class>
+        <class>com.marotech.vending.model.Branch</class>
+        <class>com.marotech.vending.model.BranchCoordinates</class>
+        <class>com.marotech.vending.model.SecurityQuestion</class>
+        <class>com.marotech.vending.model.Currency</class>
+        <class>com.marotech.vending.model.DebitCreditData</class>
+        <class>com.marotech.vending.model.Device</class>
+        <class>com.marotech.vending.model.DeviceDiscovery</class>
+        <class>com.marotech.vending.model.Voucher</class>
+        <class>com.marotech.vending.model.WithdrawalReport</class>
+        <class>com.marotech.vending.model.State</class>
+        <class>com.marotech.vending.model.FSM</class>
+        <class>com.marotech.vending.model.Current</class>
+        <class>com.marotech.vending.model.Merchant</class>
+        <class>com.marotech.vending.model.Vendor</class>
+        <class>com.marotech.vending.model.ExchangeRate</class>
+        <class>com.marotech.vending.model.Aggregator</class>
+        <class>com.marotech.vending.model.Message</class>
+        <class>com.marotech.vending.model.LocalDateAttributeConverter</class>
+
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.globally_quoted_identifiers" value="true"/>
+            <property name="hibernate.connection.autoReconnect" value="true"/>
+            <property name="hibernate.connection.autoReconnectForPools" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

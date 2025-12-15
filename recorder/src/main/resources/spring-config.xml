@@ -1,0 +1,128 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/tx
+                http://www.springframework.org/schema/tx/spring-tx.xsd
+                http://camel.apache.org/schema/spring
+                http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <import resource="mysql-spring-db.xml"/>
+
+    <tx:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.marotech.vending.config,com.marotech.vending"/>
+
+    <bean id="propertySourcesPlaceholderConfigurer"
+          class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer ">
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+        <property name="localOverride" value="false"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jmsConnectionFactory"
+          class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
+
+    <bean id="pooledConnectionFactory"
+          class="org.messaginghub.pooled.jms.JmsPoolConnectionFactory">
+        <property name="maxConnections" value="8"/>
+        <property name="connectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+    <bean id="jmsConfig"
+          class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="transacted" value="false"/>
+        <property name="concurrentConsumers" value="10"/>
+    </bean>
+
+    <bean id="jms"
+          class="org.apache.camel.component.activemq.ActiveMQComponent">
+        <property name="configuration" ref="jmsConfig"/>
+    </bean>
+
+    <!--
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>smtp.gmail.com</value>
+        </property>
+        <property name="username">
+            <value>Securityadmin</value>
+        </property>
+        <property name="password">
+            <value>Securityadmin</value>
+        </property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="fromEmail">nkasvosve@gmail.com</prop>
+                <prop key="scheduleMail">true</prop>
+                <prop key="confirmRegLink">http://Security.co/Security-biz/web/user/reg-confirmation</prop>
+            </props>
+        </property>
+    </bean>
+    -->
+    <bean id="loyaltyRateProcessor" class="com.marotech.vending.processor.LoyaltyRateProcessor"/>
+    <bean id="voucherNotificationProcessor" class="com.marotech.vending.processor.VoucherNotificationProcessor"/>
+    <bean id="exchangeRateHourlyProcessor" class="com.marotech.vending.processor.ExchangeRateHourlyProcessor"/>
+    <bean id="chargeRateHourlyProcessor" class="com.marotech.vending.processor.ChargeRateHourlyProcessor"/>
+    <bean id="merchantVoucherExportService" class="com.marotech.vending.export.MerchantVoucherExportProcessor"/>
+    <bean id="vendorVoucherExportService" class="com.marotech.vending.export.VendorVoucherExportProcessor"/>
+    <bean id="floatDailyProcessor" depends-on="orgDataSet"
+          class="com.marotech.vending.processor.AgentFloatDailyProcessor"/>
+    <bean id="neo4JVoucherProcessor" class="com.marotech.vending.processor.Neo4JVoucherProcessor"/>
+
+    <camel:camelContext id="jobsCamelContext"
+                        xmlns="http://camel.apache.org/schema/spring" autoStartup="true">
+
+        <route id="voucherRoute">
+            <from uri="direct://vouchers"/>
+            <process ref="voucherNotificationProcessor"/>
+            <process ref="neo4JVoucherProcessor"/>
+            <to uri="jms:queue:vouchers"/>
+        </route>
+        <route id="loyaltyRateRoute">
+            <from uri="quartz://loyaltyRateRoute?cron=0+0+*+*+*+?"/>
+            <process ref="loyaltyRateProcessor"/>
+        </route>
+        <route id="exchangeRateRoute">
+            <from uri="quartz://exchangeRateRoute?cron=0+0+*+*+*+?"/>
+            <process ref="exchangeRateHourlyProcessor"/>
+        </route>
+        <route id="chargeRateRoute">
+            <from uri="quartz://chargeRateRoute?cron=0+0+*+*+*+?"/>
+            <process ref="chargeRateHourlyProcessor"/>
+        </route>
+
+        <!-- runs at the start of the application, and at midnight every day-->
+        <route id="agentFloatRoute">
+            <from uri="quartz://agentFloatRoute?cron=0+0+0+*+*+?"/>
+            <process ref="floatDailyProcessor"/>
+        </route>
+
+        <route id="merchantVoucherExportRoute">
+            <from uri="quartz://merchantVoucherExportRoute?cron=0+59+23+?+*+SUN"/>
+            <process ref="merchantVoucherExportService"/>
+        </route>
+
+        <route id="vendorVoucherExportRoute">
+            <from uri="quartz://vendorVoucherExportRoute?cron=0+59+23+?+*+SUN"/>
+            <process ref="vendorVoucherExportService"/>
+        </route>
+
+    </camel:camelContext>
+
+</beans>

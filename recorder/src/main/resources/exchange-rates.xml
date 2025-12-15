@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<exchange-rates>
+    <currency name="AUD" baseCurrency="ZIG" rate="36" fullName="Australia Dollar"/>
+    <currency name="NZD" baseCurrency="ZIG" rate="35" fullName="New Zealand Dollar"/>
+    <currency name="GBP" baseCurrency="ZIG" rate="20" fullName="Great Britain Pound"/>
+    <currency name="R" baseCurrency="ZIG" rate="90" fullName="South Africa Rand"/>
+    <currency name="USD" baseCurrency="ZIG" rate="33" fullName="United States Dollar"/>
+    <currency name="ZIG" baseCurrency="ZIG" rate="1" fullName="Zimbabwe Dollar"/>
+</exchange-rates>

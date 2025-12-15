@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<vendors>
+    <vendor name="ZB Bank" activeStatus="ACTIVE" email="admin@zb.co.zw" phoneNumbers="071251508"
+            contactPerson="Jane Doe" url="http://localhost/test" apiKey="abcdefg"
+            taxId="1234" address="1 Highway Ave" city="Bulawayo"/>
+    <vendor name="OK" activeStatus="ACTIVE" email="admin@ok.co.zw" phoneNumbers="071251508"
+            contactPerson="Jane Doe" url="http://localhost/test" apiKey="abcdefg" taxId="1235" address="4 Highway Ave" city="Bulawayo"/>
+    <vendor name="RKC Enterprises" activeStatus="NOT_ACTIVE" email="admin@rks.co.zw"
+            phoneNumbers="071251508" contactPerson="Jane Doe" url="http://localhost/test" apiKey="abcdefg" taxId="1237" address="3 Highway Ave" city="Bulawayo"/>
+    <vendor name="BK and Sons" activeStatus="NOT_ACTIVE" email="admin@bkandsons.co.zw"
+            phoneNumbers="071251508" contactPerson="Jane Doe" url="http://localhost/test" apiKey="abcdefg" taxId="1238" address="3 Highway Ave" city="Bulawayo"/>
+</vendors>

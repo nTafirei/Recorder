@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<merchants>
+    <!-- NOTE: ussdKey 20 and 21 are reserved-->
+    <merchant name="ZESA" type="ELECTRICITY" activeStatus="ACTIVE" displayOrder="0" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678" paymentMethod="V">
+        <products>
+            <product name="ZESA Pre-Paid Electricity Voucher" type="ELECTRICITY" availabilityDate="" expiryDate="" minPurchase=""
+                     maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="City of Harare"  activeStatus="ACTIVE" displayOrder="1" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="City of Harare Pre-Paid Water Voucher" type="WATER" availabilityDate=""
+                     expiryDate="" minPurchase=""
+                     maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="Thuli"  activeStatus="ACTIVE"  displayOrder="2" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="Thuli Pre-Paid Fuel Voucher" type="FUEL" availabilityDate="" expiryDate="" minPurchase="" maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="TotalEnergies"  activeStatus="ACTIVE" displayOrder="3" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="TotalEnergies Pre-Paid Fuel Voucher" type="FUEL" availabilityDate="" expiryDate="" minPurchase=""
+                     maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="ZimGas"  activeStatus="ACTIVE"  displayOrder="4" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="ZimGas Pre-Paid Gas Voucher" type="GAS" availabilityDate="" expiryDate="" minPurchase="" maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="ABC Enterprises"  activeStatus="NOT_ACTIVE" displayOrder="5" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="ABC Enterprises Pre-Paid Fuel Voucher" type="FUEL" availabilityDate="" expiryDate="" minPurchase=""
+                     maxPurchase=""/>
+        </products>
+    </merchant>
+    <merchant name="GG and Sons"  activeStatus="NOT_ACTIVE" displayOrder="6" url="http://localhost/test" apiKey="abcdefg"
+              address="1 Highway Ave" city="Bulawayo" email="admin@zb.co.zw" phoneNumbers="071251508"
+              contactPerson="Jane Doe" taxId="12345678">
+        <products>
+            <product name="GG and Sons Pre-Paid Fuel Voucher" type="FUEL" availabilityDate="" expiryDate="" minPurchase=""
+                     maxPurchase=""/>
+        </products>
+    </merchant>
+</merchants>

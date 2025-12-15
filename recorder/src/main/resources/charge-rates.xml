@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<charge-rates>
+
+    <charge-rate name="Aggregator Commission Percentage Charge" transaction-type="AGGREGATOR_COMMISSION"
+                       charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Aggregator Commission Fixed Charge" transaction-type="AGGREGATOR_COMMISSION"
+                       charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Aggregator Agent Commission Percentage Charge"
+                       transaction-type="AGGREGATOR_AGENT_COMMISSION"
+                       charge-type="PERCENT"
+                       amount="5" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Aggregator Agent Commission Fixed Charge"
+                       transaction-type="AGGREGATOR_AGENT_COMMISSION"
+                       charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Vendor Commission Percentage Charge" transaction-type="VENDOR_COMMISSION"
+                       charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Vendor Commission Fixed Charge" transaction-type="VENDOR_COMMISSION"
+                       charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Transfer to Mobile Wallet Percentage Charge" transaction-type="TRANSFER_TO_ETERNAL_WALLET"
+                       charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Transfer to Mobile Wallet Fixed Charge" transaction-type="TRANSFER_TO_ETERNAL_WALLET"
+                       charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Transfer to Bank Percentage Charge" transaction-type="TRANSFER_TO_BANK"
+                       charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Transfer to Bank Fixed Charge" transaction-type="TRANSFER_TO_BANK"
+                       charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="General Refund Percentage Charge" transaction-type="REFUND" charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="General Refund Fixed Charge" transaction-type="REFUND" charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Top up Percentage Charge" transaction-type="TOP_UP" charge-type="PERCENT"
+                       amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Top up Fixed Charge" transaction-type="TOP_UP" charge-type="FIXED_AMOUNT"
+                       amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Tax Percentage Charge" transaction-type="TAX_RATE" charge-type="PERCENT"
+                 amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="Tax Fixed Charge" transaction-type="TAX_RATE" charge-type="FIXED_AMOUNT"
+                 amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="VAT Percentage Charge" transaction-type="VAT_RATE" charge-type="PERCENT"
+                 amount="0.02" rangeStart="1" rangeEnd="500" currency="USD"/>
+    <charge-rate name="VAT Fixed Charge" transaction-type="VAT_RATE" charge-type="FIXED_AMOUNT"
+                 amount="5" rangeStart="501" rangeEnd="1000000" currency="USD"/>
+
+    <charge-rate name="Loyalty Points Fixed Reward ($1 to $50 USD)" transaction-type="LOYALTY_REWARDS" charge-type="FIXED_AMOUNT"
+                 amount="1" rangeStart="1" rangeEnd="50" currency="POINTS"/>
+    <charge-rate name="Loyalty Points Fixed Reward ($50 to $100 USD)" transaction-type="LOYALTY_REWARDS" charge-type="FIXED_AMOUNT"
+                 amount="2" rangeStart="50" rangeEnd="500" currency="POINTS"/>
+    <charge-rate name="Loyalty Points Fixed Reward ($100 to $150 USD)" transaction-type="LOYALTY_REWARDS" charge-type="FIXED_AMOUNT"
+                 amount="3" rangeStart="100" rangeEnd="150" currency="POINTS"/>
+    <charge-rate name="Loyalty Points Fixed Reward ($150 to $200 USD)" transaction-type="LOYALTY_REWARDS" charge-type="FIXED_AMOUNT"
+                 amount="4" rangeStart="150" rangeEnd="200" currency="POINTS"/>
+    <charge-rate name="Loyalty Points Fixed Reward ($200 to $250 USD)" transaction-type="LOYALTY_REWARDS" charge-type="FIXED_AMOUNT"
+                 amount="100" rangeStart="200" rangeEnd="250" currency="POINTS"/>
+
+    <charge-rate name="Balance Inquiry Charge" transaction-type="BALANCE_INQUIRY" charge-type="FIXED_AMOUNT"
+                 amount="1" currency="USD"/>
+</charge-rates>
