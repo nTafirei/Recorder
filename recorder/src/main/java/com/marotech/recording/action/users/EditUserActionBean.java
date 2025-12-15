@@ -117,18 +117,6 @@ public class EditUserActionBean extends BaseActionBean {
 
     @HandlesEvent(ENABLE)
     public Resolution enable() throws Exception {
-
-        if (user.getVerified() != Verified.YES) {
-            getContext().getValidationErrors().add("nationalId",
-                    new LocalizableError("verifyuserfirst"));
-            return new ForwardResolution(UserDetailsActionBean.USER_DETAIL_JSP);
-        }
-
-        if (user.getPhotoId() == null) {
-            getContext().getValidationErrors().add("photoid",
-                    new LocalizableError("uploadphotoidfirst"));
-            return new ForwardResolution(JSP);
-        }
         user.setActiveStatus(ActiveStatus.ACTIVE);
         user.setDateLastUpdated(LocalDateTime.now());
         repositoryService.save(user);
@@ -190,7 +178,7 @@ public class EditUserActionBean extends BaseActionBean {
             activity.setTitle(getCurrentUser().getFullName() + " edited user " + user.getFullName() + " on " + LocalDate.now());
             repositoryService.save(activity);
         }
-        return new RedirectResolution(VerifyUserActionBean.USER_DETAILS + "/" + user.getId());
+        return new RedirectResolution( "/web/user-details/" + user.getId());
     }
 
     public ActiveStatus[] getActiveStatuses() {

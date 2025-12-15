@@ -97,7 +97,6 @@ public class OrgDataSet {
                 createSecurityQuestions(authUser);
                 repository.save(authUser);
                 user = new User();
-                user.setVerified(Verified.NO);
                 user.setActiveStatus(ActiveStatus.NOT_ACTIVE);
                 user.setDateOfBirth(LocalDate.now().minusYears(20));
                 user.setFirstName(faker.name().firstName());

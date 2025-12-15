@@ -5,7 +5,6 @@ import com.marotech.recording.action.BaseActionBean;
 import com.marotech.recording.action.RequiresOneRoleOf;
 import com.marotech.recording.action.converters.EnumConverter;
 import com.marotech.recording.action.converters.UserConverter;
-import com.marotech.recording.action.users.VerifyUserActionBean;
 import com.marotech.recording.model.*;
 import com.marotech.recording.service.RepositoryService;
 import com.marotech.recording.util.Constants;
@@ -57,7 +56,7 @@ public class UploadActionBean extends BaseActionBean {
             message = "Could not process the uploaded file";
             return resolution;
         }
-        return new RedirectResolution(VerifyUserActionBean.USER_DETAILS + "/" + user.getId());
+        return new RedirectResolution( "/web/user-details/" + user.getId());
     }
 
     private ForwardResolution processFile() throws ServletException, IOException {

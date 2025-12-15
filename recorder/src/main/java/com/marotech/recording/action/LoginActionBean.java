@@ -86,7 +86,7 @@ public class LoginActionBean extends BaseActionBean {
 
         user = authUser.getUser();
 
-        if (user.getActiveStatus() != ActiveStatus.ACTIVE || user.getVerified() != Verified.YES) {
+        if (user.getActiveStatus() != ActiveStatus.ACTIVE) {
             return new RedirectResolution(ACCOUNT_NOT_ACTIVE);
         }
         setCurrentUser(user);

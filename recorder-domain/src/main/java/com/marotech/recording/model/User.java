@@ -41,9 +41,6 @@ public class User extends BaseEntity {
     private LocalDate dateOfBirth = LocalDate.now();
     @Enumerated(EnumType.STRING)
     @NotNull
-    private Verified verified = Verified.NO;
-    @Enumerated(EnumType.STRING)
-    @NotNull
     private ActiveStatus activeStatus = ActiveStatus.ACTIVE;
     @Enumerated(EnumType.STRING)
     private AgentStatus agentStatus = AgentStatus.ACTIVE;
