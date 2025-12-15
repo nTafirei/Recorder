@@ -16,7 +16,7 @@
 
     <tx:annotation-driven/>
     <context:annotation-config/>
-    <context:component-scan base-package="com.marotech.vending.config,com.marotech.vending"/>
+    <context:component-scan base-package="com.marotech.recording.config,com.marotech.recording"/>
 
     <bean id="propertySourcesPlaceholderConfigurer"
           class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer ">
@@ -75,15 +75,15 @@
         </property>
     </bean>
     -->
-    <bean id="loyaltyRateProcessor" class="com.marotech.vending.processor.LoyaltyRateProcessor"/>
-    <bean id="voucherNotificationProcessor" class="com.marotech.vending.processor.VoucherNotificationProcessor"/>
-    <bean id="exchangeRateHourlyProcessor" class="com.marotech.vending.processor.ExchangeRateHourlyProcessor"/>
-    <bean id="chargeRateHourlyProcessor" class="com.marotech.vending.processor.ChargeRateHourlyProcessor"/>
-    <bean id="merchantVoucherExportService" class="com.marotech.vending.export.MerchantVoucherExportProcessor"/>
-    <bean id="vendorVoucherExportService" class="com.marotech.vending.export.VendorVoucherExportProcessor"/>
+    <bean id="loyaltyRateProcessor" class="com.marotech.recording.processor.LoyaltyRateProcessor"/>
+    <bean id="voucherNotificationProcessor" class="com.marotech.recording.processor.VoucherNotificationProcessor"/>
+    <bean id="exchangeRateHourlyProcessor" class="com.marotech.recording.processor.ExchangeRateHourlyProcessor"/>
+    <bean id="chargeRateHourlyProcessor" class="com.marotech.recording.processor.ChargeRateHourlyProcessor"/>
+    <bean id="merchantVoucherExportService" class="com.marotech.recording.export.MerchantVoucherExportProcessor"/>
+    <bean id="vendorVoucherExportService" class="com.marotech.recording.export.VendorVoucherExportProcessor"/>
     <bean id="floatDailyProcessor" depends-on="orgDataSet"
-          class="com.marotech.vending.processor.AgentFloatDailyProcessor"/>
-    <bean id="neo4JVoucherProcessor" class="com.marotech.vending.processor.Neo4JVoucherProcessor"/>
+          class="com.marotech.recording.processor.AgentFloatDailyProcessor"/>
+    <bean id="neo4JVoucherProcessor" class="com.marotech.recording.processor.Neo4JVoucherProcessor"/>
 
     <camel:camelContext id="jobsCamelContext"
                         xmlns="http://camel.apache.org/schema/spring" autoStartup="true">

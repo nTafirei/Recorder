@@ -17,8 +17,8 @@
        http://www.springframework.org/schema/data/jpa
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <jpa:repositories base-package="com.marotech.vending.repository"></jpa:repositories>
-    <context:component-scan base-package="com.marotech.vending"/>
+    <jpa:repositories base-package="com.marotech.recording.repository"></jpa:repositories>
+    <context:component-scan base-package="com.marotech.recording"/>
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
     <util:properties id="hikariProperties" location="classpath:hsqldb-hikari.properties"/>
@@ -31,7 +31,7 @@
         <constructor-arg index="0" ref="hikariConfig"/>
     </bean>
 
-    <bean id="applicationContextProvider" class="com.marotech.vending.model.ApplicationContextProvider"/>
+    <bean id="applicationContextProvider" class="com.marotech.recording.model.ApplicationContextProvider"/>
 
     <bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
 

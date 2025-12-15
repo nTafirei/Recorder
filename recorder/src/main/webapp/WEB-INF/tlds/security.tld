@@ -26,7 +26,7 @@
             <p>Wraps pieces of a JSP page to be displayed if an event is allowed for some roles, regardless of action bean event.</p>
         ]]></description>
         <name>protected-element</name>
-        <tag-class>com.marotech.vending.security.ProtectedElementTag</tag-class>
+        <tag-class>com.marotech.recording.security.ProtectedElementTag</tag-class>
         <body-content>JSP</body-content>
 
         <attribute>
@@ -62,7 +62,7 @@
             <p>Wraps pieces of a JSP page to be displayed if content was not displayed at all on the page due to security constraints
         ]]></description>
         <name>when-no-content-displayed</name>
-        <tag-class>com.marotech.vending.security.NoSecuredTagRenderedTag</tag-class>
+        <tag-class>com.marotech.recording.security.NoSecuredTagRenderedTag</tag-class>
         <body-content>JSP</body-content>
     </tag>
 

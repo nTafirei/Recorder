@@ -8,7 +8,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
-        <listener-class>com.marotech.vending.session.SessionListener</listener-class>
+        <listener-class>com.marotech.recording.session.SessionListener</listener-class>
     </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -32,12 +32,12 @@
         <filter-class>net.sourceforge.stripes.controller.StripesFilter</filter-class>
         <init-param>
             <param-name>ActionResolver.Packages</param-name>
-            <param-value>com.marotech.vending.action</param-value>
+            <param-value>com.marotech.recording.action</param-value>
         </init-param>
         <init-param>
             <param-name>Extension.Packages</param-name>
-            <param-value>com.marotech.vending.extensions,
-                com.marotech.vending.reload.extensions,
+            <param-value>com.marotech.recording.extensions,
+                com.marotech.recording.reload.extensions,
                 net.sourceforge.stripes.integration.spring
             </param-value>
         </init-param>
@@ -45,7 +45,7 @@
         <init-param>
             <param-name>ActionBeanContext.Class</param-name>
             <param-value>
-                com.marotech.vending.util.VendActionBeanContext
+                com.marotech.recording.util.VendActionBeanContext
             </param-value>
         </init-param>
 
@@ -60,8 +60,8 @@
         <init-param>
             <param-name>Interceptor.Classes</param-name>
             <param-value>
-                com.marotech.vending.action.LoginInterceptor,
-                com.marotech.vending.action.RoleInterceptor
+                com.marotech.recording.action.LoginInterceptor,
+                com.marotech.recording.action.RoleInterceptor
             </param-value>
         </init-param>
     </filter>
