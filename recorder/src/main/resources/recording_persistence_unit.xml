@@ -4,58 +4,29 @@
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="vending_persistence_unit">
+    <persistence-unit name="recording_persistence_unit">
         <class>com.marotech.recording.model.User</class>
-        <class>com.marotech.recording.model.Cart</class>
-        <class>com.marotech.recording.model.AgentFloat</class>
-        <class>com.marotech.recording.model.MasterFloat</class>
         <class>com.marotech.recording.model.AppSession</class>
         <class>com.marotech.recording.model.Attachment</class>
         <class>com.marotech.recording.model.UserRole</class>
         <class>com.marotech.recording.model.AuthUser</class>
         <class>com.marotech.recording.model.Feature</class>
-        <class>com.marotech.recording.model.RewardPoints</class>
         <class>com.marotech.recording.model.JDBCDataSource</class>
         <class>com.marotech.recording.model.Notification</class>
-        <class>com.marotech.recording.model.LoyaltyRate</class>
-        <class>com.marotech.recording.model.Product</class>
         <class>com.marotech.recording.model.ResetInfo</class>
-        <class>com.marotech.recording.model.Contract</class>
-        <class>com.marotech.recording.model.Showcase</class>
-        <class>com.marotech.recording.model.ChargeRate</class>
         <class>com.marotech.recording.model.Comment</class>
-        <class>com.marotech.recording.model.Product</class>
         <class>com.marotech.recording.model.Embedding</class>
         <class>com.marotech.recording.model.LanguageModel</class>
         <class>com.marotech.recording.model.Location</class>
         <class>com.marotech.recording.model.Account</class>
         <class>com.marotech.recording.model.AccountRecoveryInfo</class>
-        <class>com.marotech.recording.model.MobileWalletData</class>
-        <class>com.marotech.recording.model.Money</class>
         <class>com.marotech.recording.model.Activity</class>
         <class>com.marotech.recording.model.Address</class>
         <class>com.marotech.recording.model.Passcode</class>
-        <class>com.marotech.recording.model.PayToAccountReport</class>
-        <class>com.marotech.recording.model.PayToCashReport</class>
-        <class>com.marotech.recording.model.AvailableBalance</class>
-        <class>com.marotech.recording.model.PaymentMethod</class>
-        <class>com.marotech.recording.model.Bank</class>
-        <class>com.marotech.recording.model.Branch</class>
-        <class>com.marotech.recording.model.BranchCoordinates</class>
+        <class>com.marotech.recording.model.Recording</class>
         <class>com.marotech.recording.model.SecurityQuestion</class>
-        <class>com.marotech.recording.model.Currency</class>
-        <class>com.marotech.recording.model.DebitCreditData</class>
         <class>com.marotech.recording.model.Device</class>
         <class>com.marotech.recording.model.DeviceDiscovery</class>
-        <class>com.marotech.recording.model.Voucher</class>
-        <class>com.marotech.recording.model.WithdrawalReport</class>
-        <class>com.marotech.recording.model.State</class>
-        <class>com.marotech.recording.model.FSM</class>
-        <class>com.marotech.recording.model.Current</class>
-        <class>com.marotech.recording.model.Merchant</class>
-        <class>com.marotech.recording.model.Vendor</class>
-        <class>com.marotech.recording.model.ExchangeRate</class>
-        <class>com.marotech.recording.model.Aggregator</class>
         <class>com.marotech.recording.model.Message</class>
         <class>com.marotech.recording.model.LocalDateAttributeConverter</class>
 

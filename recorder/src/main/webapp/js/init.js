@@ -9,23 +9,23 @@
     skel.init({
         reset: 'full',
         breakpoints: {
-            'global': {range: '*', href: '/vend/css/style.css'},
+            'global': {range: '*', href: '/recorder/css/style.css'},
             'desktop': {
                 range: '737-',
-                href: '/vend/css/style-desktop.css',
+                href: '/recorder/css/style-desktop.css',
                 containers: 1200,
                 grid: {gutters: 40}
             },
             '1000px': {
                 range: '737-1200',
-                href: '/vend/css/style-1000px.css',
+                href: '/recorder/css/style-1000px.css',
                 containers: 960,
                 grid: {gutters: 25},
                 viewport: {width: 1080}
             },
             'mobile': {
                 range: '-736',
-                href: '/vend/css/style-mobile.css',
+                href: '/recorder/css/style-mobile.css',
                 containers: '100%!',
                 grid: {collapse: true, gutters: 20},
                 viewport: {scalable: false}

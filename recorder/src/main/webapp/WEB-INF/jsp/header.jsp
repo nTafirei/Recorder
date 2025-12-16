@@ -32,18 +32,18 @@
                             <li ><d:link href="/web/pre-register"><fmt:message key="registermenu"/></d:link></li>
                     </c:if>
                 </c:if>
+                         <c:if test="${actionBean.navSection == 'recordings'}">
+                             <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
+                         <c:if test="${actionBean.navSection != 'recordings'}">
+                             <li><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
+
                         <c:if test="${actionBean.navSection == 'tools'}">
                              <li class="current"><d:link href="/web/tools"><fmt:message key="toolslabel"/></d:link></li>
                          </c:if>
                          <c:if test="${actionBean.navSection != 'tools'}">
                              <li><d:link href="/web/tools"><fmt:message key="toolslabel"/></d:link></li>
-                         </c:if>
-
-                        <c:if test="${actionBean.navSection == 'products'}">
-                             <li class="current"><d:link href="/web/products"><fmt:message key="productslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'products'}">
-                             <li><d:link href="/web/products"><fmt:message key="productslabel"/></d:link></li>
                          </c:if>
 
                 <c:if test="${actionBean.isLoggedIn == true}">
@@ -71,31 +71,12 @@
                         </c:if>
                      </security:protected-element>
 
-                    <security:protected-element name="view-financials-menu">
-                         <c:if test="${actionBean.navSection == 'financials'}">
-                             <li class="current"><d:link href="/web/financials"><fmt:message key="financialslabel"/></d:link></li>
+                         <c:if test="${actionBean.navSection == 'my-recordings'}">
+                             <li class="current"><d:link href="/web/my-recordings"><fmt:message key="myrecordingslabel"/></d:link></li>
                          </c:if>
-                         <c:if test="${actionBean.navSection != 'financials'}">
-                             <li><d:link href="/web/financials"><fmt:message key="financialslabel"/></d:link></li>
+                         <c:if test="${actionBean.navSection != 'my-recordings'}">
+                             <li><d:link href="/web/my-recordings"><fmt:message key="myrecordingslabel"/></d:link></li>
                          </c:if>
-                    </security:protected-element>
-                    <security:protected-element name="manage-merchants">
-                         <c:if test="${actionBean.navSection == 'merchants'}">
-                             <li class="current"><d:link href="/web/merchants"><fmt:message key="merchantslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'merchants'}">
-                             <li><d:link href="/web/merchants"><fmt:message key="merchantslabel"/></d:link></li>
-                         </c:if>
-                    </security:protected-element>
-
-                    <security:protected-element name="manage-vendors">
-                         <c:if test="${actionBean.navSection == 'vendors'}">
-                             <li class="current"><d:link href="/web/vendors"><fmt:message key="vendorslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'vendors'}">
-                             <li><d:link href="/web/vendors"><fmt:message key="vendorslabel"/></d:link></li>
-                         </c:if>
-                    </security:protected-element>
 
                     <security:protected-element name="show-user-list">
                          <c:if test="${actionBean.navSection == 'users'}">
@@ -112,17 +93,6 @@
                          </c:if>
                          <c:if test="${actionBean.navSection != 'reports'}">
                              <li><d:link href="/web/reports"><fmt:message key="reportslabel"/></d:link></li>
-                         </c:if>
-                    </security:protected-element>
-                         <li><d:link href="/web/my-transaction-history/${actionBean.currentUser.id}">
-                                <fmt:message key="myaccounthistorylabel"/>
-                            </d:link></li>
-                    <security:protected-element name="view-contracts">
-                         <c:if test="${actionBean.navSection == 'contracts'}">
-                             <li class="current"><d:link href="/web/contracts?activeStatus=ACTIVE"><fmt:message key="contractslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'contracts'}">
-                             <li><d:link href="/web/contracts?activeStatus=ACTIVE"><fmt:message key="contractslabel"/></d:link></li>
                          </c:if>
                     </security:protected-element>
                          <c:if test="${actionBean.navSection == 'my-details'}">

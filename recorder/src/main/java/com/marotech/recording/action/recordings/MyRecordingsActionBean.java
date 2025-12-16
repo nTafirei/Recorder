@@ -1,54 +1,29 @@
 package com.marotech.recording.action.recordings;
 
-import com.marotech.recording.action.BaseActionBean;
-import com.marotech.recording.action.converters.NotificationConverter;
-import com.marotech.recording.model.Notification;
-import com.marotech.recording.service.RepositoryService;
+import com.marotech.recording.model.User;
 import lombok.Getter;
 import lombok.Setter;
-import net.sourceforge.stripes.action.*;
-import net.sourceforge.stripes.integration.spring.SpringBean;
-import net.sourceforge.stripes.validation.Validate;
-
-import java.util.List;
+import net.sourceforge.stripes.action.UrlBinding;
 
 @UrlBinding("/web/my-recordings")
-public class MyRecordingsActionBean extends BaseActionBean {
+public class MyRecordingsActionBean extends BaseRecordingsActionBean {
 
-    @Getter
-    private List<Notification> notifications;
-    @Getter
-    @Setter
-    @Validate(on = DELETE, converter = NotificationConverter.class, required = true)
-    private Notification notification;
-
-    @DefaultHandler
-    public Resolution list() {
-        notifications = repositoryService.fetchNotificationsByRecipient(getCurrentUser());
-        return new ForwardResolution(LIST_JSP);
+    public User getUser(){
+        return getCurrentUser();
     }
 
-    @HandlesEvent(DELETE)
-    public Resolution delete() {
-        repositoryService.getRepository().delete(notification);
-        return new RedirectResolution("/web/inbox");
+    @Override
+    public String getListPage(){
+        return  LIST_PAGE;
     }
 
-    public long getNotificationsSize() {
-        return notifications.size();
+    public String getPageTitle(){
+        return "My Recordings";
     }
 
     @Override
     public String getNavSection() {
-        return "inbox";
+        return "my-recordings";
     }
-
-    @Override
-    protected String getErrorPage() {
-        return LIST_JSP;
-    }
-
-    @SpringBean
-    private RepositoryService repositoryService;
-    private static final String LIST_JSP = "/WEB-INF/jsp/inbox/list.jsp";
+    private static final String LIST_PAGE ="/web/my-recordings";
 }

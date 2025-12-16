@@ -75,54 +75,9 @@
         </property>
     </bean>
     -->
-    <bean id="loyaltyRateProcessor" class="com.marotech.recording.processor.LoyaltyRateProcessor"/>
-    <bean id="voucherNotificationProcessor" class="com.marotech.recording.processor.VoucherNotificationProcessor"/>
-    <bean id="exchangeRateHourlyProcessor" class="com.marotech.recording.processor.ExchangeRateHourlyProcessor"/>
-    <bean id="chargeRateHourlyProcessor" class="com.marotech.recording.processor.ChargeRateHourlyProcessor"/>
-    <bean id="merchantVoucherExportService" class="com.marotech.recording.export.MerchantVoucherExportProcessor"/>
-    <bean id="vendorVoucherExportService" class="com.marotech.recording.export.VendorVoucherExportProcessor"/>
-    <bean id="floatDailyProcessor" depends-on="orgDataSet"
-          class="com.marotech.recording.processor.AgentFloatDailyProcessor"/>
-    <bean id="neo4JVoucherProcessor" class="com.marotech.recording.processor.Neo4JVoucherProcessor"/>
 
     <camel:camelContext id="jobsCamelContext"
                         xmlns="http://camel.apache.org/schema/spring" autoStartup="true">
-
-        <route id="voucherRoute">
-            <from uri="direct://vouchers"/>
-            <process ref="voucherNotificationProcessor"/>
-            <process ref="neo4JVoucherProcessor"/>
-            <to uri="jms:queue:vouchers"/>
-        </route>
-        <route id="loyaltyRateRoute">
-            <from uri="quartz://loyaltyRateRoute?cron=0+0+*+*+*+?"/>
-            <process ref="loyaltyRateProcessor"/>
-        </route>
-        <route id="exchangeRateRoute">
-            <from uri="quartz://exchangeRateRoute?cron=0+0+*+*+*+?"/>
-            <process ref="exchangeRateHourlyProcessor"/>
-        </route>
-        <route id="chargeRateRoute">
-            <from uri="quartz://chargeRateRoute?cron=0+0+*+*+*+?"/>
-            <process ref="chargeRateHourlyProcessor"/>
-        </route>
-
-        <!-- runs at the start of the application, and at midnight every day-->
-        <route id="agentFloatRoute">
-            <from uri="quartz://agentFloatRoute?cron=0+0+0+*+*+?"/>
-            <process ref="floatDailyProcessor"/>
-        </route>
-
-        <route id="merchantVoucherExportRoute">
-            <from uri="quartz://merchantVoucherExportRoute?cron=0+59+23+?+*+SUN"/>
-            <process ref="merchantVoucherExportService"/>
-        </route>
-
-        <route id="vendorVoucherExportRoute">
-            <from uri="quartz://vendorVoucherExportRoute?cron=0+59+23+?+*+SUN"/>
-            <process ref="vendorVoucherExportService"/>
-        </route>
-
     </camel:camelContext>
 
 </beans>

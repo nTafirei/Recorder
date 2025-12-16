@@ -1,86 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <protected-elements>
 
-    <protected-element name="view-user-transactions">
-        <role name="Agent"/>
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-agent-transactions">
-        <role name="Agent"/>
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-loyalty-rates">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-loyalty-rates">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="redeem-user-points">
-        <role name="Agent"/>
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-contracts">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-contracts">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="give-agent-float">
-        <role name="Float Manager"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="give-agent-float">
-        <role name="Float Manager"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="collect-agent-float">
-        <role name="Float Manager"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-details">
-        <role name="Agent"/>
-        <role name="Float Manager"/>
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-agent-float-history">
-        <role name="Float Manager"/>
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="manage-vendor-agents">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-transactions">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-merchant-transactions">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Merchant Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-user-account-balance">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-account-balance">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-merchant-account-balance">
+    <protected-element name="manage-recordings">
         <role name="Customer Service"/>
         <role name="System Administrator"/>
     </protected-element>
@@ -88,104 +9,17 @@
         <role name="Customer Service"/>
         <role name="System Administrator"/>
     </protected-element>
-    <protected-element name="view-vendors">
-        <role name="Customer Service"/>
-        <role name="Vendor Account Administrator"/>
-        <role name="System Administrator"/>
-    </protected-element>
     <protected-element name="edit-users">
         <role name="Customer Service"/>
         <role name="System Administrator"/>
     </protected-element>
-    <protected-element name="view-system-commissions-account">
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-system-wallet-account">
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-tax-authority-account">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-agents">
-        <role name="Customer Service"/>
-        <role name="Float Manager"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-merchant-transactions">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Merchant Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-transactions">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
-    <protected-element name="view-vendor-commission-rates">
-        <role name="Customer Service"/>
-        <role name="System Administrator"/>
-        <role name="Vendor Account Administrator"/>
-    </protected-element>
     <protected-element name="view-security-policies">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-agent-commission-rates">
-        <role name="Agent"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-charge-rates">
-        <role name="Agent"/>
         <role name="System Administrator"/>
     </protected-element>
     <protected-element name="manage-reports">
         <role name="System Administrator"/>
     </protected-element>
-    <protected-element name="manage-charge-rates">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-merchants">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-vendors">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="top-up-vendors">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="top-up-users">
-        <role name="Agent"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-contracts">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="pay-users">
-        <role name="Agent"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-exchange-rates">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-exchange-rates">
-        <role name="Agent"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="view-financials-menu">
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-financials">
-        <role name="System Administrator"/>
-    </protected-element>
     <protected-element name="show-user-list">
-        <role name="Agent"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="manage-products">
         <role name="System Administrator"/>
     </protected-element>
     <protected-element name="manage-roles">
@@ -196,9 +30,6 @@
     </protected-element>
     <protected-element name="show-tools">
         <role name="User"/>
-        <role name="System Administrator"/>
-    </protected-element>
-    <protected-element name="verify-users">
         <role name="System Administrator"/>
     </protected-element>
     <protected-element name="list-users">

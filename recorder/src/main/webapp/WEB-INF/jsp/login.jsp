@@ -65,16 +65,6 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <strong>Demo Agent Credentials</strong>
-                                            </td>
-                                            <td>
-                                                username:<strong>${actionBean.demoAgent}</strong>
-                                                    <br/>
-                                                password:<strong>test</strong>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
                                                 <strong>Demo Admin Credentials</strong>
                                             </td>
                                             <td>

@@ -55,6 +55,11 @@ public class RepositoryService {
     }
 
     //---------------------------------------------------------------------
+    public long countRecordingsForUser(User user) {
+        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 ", Long.class).
+                setParameter(1, user.getId())
+                .getSingleResult();
+    }
     public List<Recording> fetchRecordingsForUser(User user, LocalDate fromDate,
                                                          LocalDate toDate, Page page) {
         return entityManager.createQuery("SELECT u from Recording u where u.user.id =?1 " +
@@ -79,8 +84,8 @@ public class RepositoryService {
 
     public long countRecordingsForUser(User user, LocalDate fromDate,
                                                 LocalDate toDate) {
-        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 ",
-                        Long.class).
+        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 " +
+                        "AND u.dateCreated BETWEEN ?2 and ?3", Long.class).
                 setParameter(1, user.getId()).
                 setParameter(2, fromDate.atStartOfDay()).
                 setParameter(3, toDate.plusDays(1).atStartOfDay())
@@ -111,17 +116,15 @@ public class RepositoryService {
         query.setParameter("status", ActiveStatus.ACTIVE);
         return query.getResultList();
     }
-
-    public List<Recording> fetchByUserAndActiveStatus(User user) {
+    public List<Recording> fetchRecordingsByUser(User user) {
         return entityManager.createQuery(
-                        "SELECT r FROM FSM r WHERE r.user =?1", Recording.class)
+                        "SELECT r FROM Recording r WHERE r.user =?1", Recording.class)
                 .setParameter(1, user)
                 .getResultList();
     }
-
-    public List<Recording> fetchByMobileNumberAndActiveStatus(String mobileNumber) {
+    public List<Recording> fetchByMobileNumber(String mobileNumber) {
         return entityManager.createQuery(
-                        "SELECT r FROM FSM r WHERE r.mobileNumber =?1", Recording.class)
+                        "SELECT r FROM FSM r WHERE r.user.mobileNumber =?1", Recording.class)
                 .setParameter(1, mobileNumber)
                 .getResultList();
     }
@@ -186,23 +189,7 @@ public class RepositoryService {
     }
 
     //---------------------------------------------------------------------
-    public long countRecordingsForAgent(User agent) {
-        try {
-            return entityManager.createQuery("SELECT count(id) from Recording u where u.agent.id =?1", Long.class).
-                    setParameter(1, agent.getId())
-                    .getSingleResult();
-        } catch (Exception e) {
-            return 0;
-        }
-    }
 
-    public long countRecordingsForUser(User user) {
-        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 ", Long.class).
-                setParameter(1, user.getId())
-                .getSingleResult();
-    }
-
-    //--------------------------------------------------------------------
 
     public Activity fetchActivityById(String id) {
         try {
@@ -509,6 +496,4 @@ public class RepositoryService {
     public static final String ORG_ID = "orgId";
     public static final String TAX_AUTHORITY_NAME = "tax.authority.name";
     private static final Logger LOG = LoggerFactory.getLogger(RepositoryService.class);
-
-
 }
