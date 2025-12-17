@@ -27,17 +27,8 @@ import java.time.LocalDate;
 @WebServlet
 @MultipartConfig(fileSizeThreshold = 20971520) // 20MB
 @UrlBinding("/web/upload")
-@RequiresOneRoleOf({Constants.SYS_ADMIN, Constants.CUSTOMER_SERVICE})
 public class UploadActionBean extends BaseActionBean {
 
-    @Getter
-    @Setter
-    @Validate(required = true, on = UPLOAD, converter = UserConverter.class)
-    private User user;
-    @Getter
-    @Setter
-    @Validate(required = true, on = UPLOAD, converter = EnumConverter.class)
-    private DocType docType;
     @Setter
     private FileBean fileBean;
     @Getter
@@ -56,15 +47,15 @@ public class UploadActionBean extends BaseActionBean {
             message = "Could not process the uploaded file";
             return resolution;
         }
-        return new RedirectResolution( "/web/user-details/" + user.getId());
+        return new RedirectResolution("/web/my-recordings");
     }
 
     private ForwardResolution processFile() throws ServletException, IOException {
 
-        InputStream imageStream;
+        InputStream inputStream;
         try {
-            imageStream = fileBean.getInputStream();
-            byte[] bytes = imageStream.readAllBytes();
+            inputStream = fileBean.getInputStream();
+            byte[] bytes = inputStream.readAllBytes();
             String fileName = fileBean.getFileName();
             boolean valid = false;
             if (fileName.toLowerCase().endsWith(".pdf")
@@ -77,15 +68,6 @@ public class UploadActionBean extends BaseActionBean {
                 return new ForwardResolution(JSP);
             }
             createDocument(bytes);
-            String path = config.getProperty("uploads.incoming.file.dir");
-            try {
-                BufferedWriter writer = new BufferedWriter(
-                        new FileWriter(path + File.separator + fileName));
-                writer.write(new String(bytes, StandardCharsets.UTF_8));
-                writer.close();
-            } catch (Exception ex) {
-                LOG.error("Error", ex);
-            }
             message = "File has been accepted for processing";
         } catch (Exception e) {
             LOG.error("Error", e);
@@ -99,35 +81,42 @@ public class UploadActionBean extends BaseActionBean {
         return null;
     }
 
-    private void createDocument(byte[] buffer) {
+    private void createDocument(byte[] bytes) {
 
         Attachment attachment = new Attachment();
-        attachment.setData(buffer);
+        attachment.setData(bytes);
         attachment.setContentType(fileBean.getContentType());
         attachment.setSize(fileBean.getSize());
         attachment.setName(fileBean.getFileName());
-        attachment.setDocType(docType);
         repositoryService.save(attachment);
-        user.setPhotoId(attachment);
-        repositoryService.save(user);
+        String path = config.getProperty("app.audio.storage.path");
+        try {
+            BufferedWriter writer = new BufferedWriter(
+                    new FileWriter(path + File.separator + fileBean.getFileName()));
+            writer.write(new String(bytes, StandardCharsets.UTF_8));
+            writer.close();
+        } catch (Exception ex) {
+            LOG.error("Error", ex);
+        }
+        Recording recording = new Recording();
+        recording.setAttachment(attachment);
+        recording.setUser(getCurrentUser());
+        repositoryService.save(recording);
 
         if (shouldAudit()) {
             Activity activity = new Activity();
-            activity.setActivityType(ActivityType.UPLOADED_ID);
+            activity.setActivityType(ActivityType.UPLOADED_RECORDING);
             activity.setActor(getCurrentUser());
             activity.setAttachment(attachment);
-            activity.setTitle(getCurrentUser().getFullName() + " " + docType.getType() + " for " + user.getFullName() + " on " + LocalDate.now());
+            activity.setTitle(getCurrentUser().getFullName()
+                    + " for " + getCurrentUser().getFullName() + " on " + LocalDate.now());
             repositoryService.save(activity);
         }
     }
 
-    public DocType[] getDocTypes() {
-        return DocType.values();
-    }
-
     @Override
     public String getNavSection() {
-        return "users";
+        return "uploads";
     }
 
     @Override

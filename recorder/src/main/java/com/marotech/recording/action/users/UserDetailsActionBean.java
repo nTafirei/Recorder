@@ -27,7 +27,7 @@ public class UserDetailsActionBean extends BaseActionBean {
 
     @DefaultHandler
     public Resolution view() {
-         return new ForwardResolution(USER_DETAIL_JSP);
+        return new ForwardResolution(USER_DETAIL_JSP);
     }
 
     @Override

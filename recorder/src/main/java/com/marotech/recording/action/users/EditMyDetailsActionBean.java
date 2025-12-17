@@ -77,7 +77,7 @@ public class EditMyDetailsActionBean extends BaseActionBean {
         repositoryService.save(theAddress);
 
         AuthUser existing = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
-        if(existing != null && !existing.getMobileNumber().equals(mobileNumber)){
+        if (existing != null && !existing.getMobileNumber().equals(mobileNumber)) {
             getContext().getValidationErrors().add("mobileNumber",
                     new LocalizableError("mobilenumberistaken"));
             return new ForwardResolution(JSP);

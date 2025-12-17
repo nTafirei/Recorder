@@ -3,7 +3,6 @@ package com.marotech.recording.action.recordings;
 import com.marotech.recording.action.BaseActionBean;
 import com.marotech.recording.action.converters.RecordingConverter;
 import com.marotech.recording.model.Recording;
-import com.marotech.recording.model.User;
 import com.marotech.recording.service.RepositoryService;
 import com.marotech.recording.util.Constants;
 import com.marotech.recording.util.Page;
@@ -18,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 @UrlBinding("/web/recordings")
 public class RecordingsActionBean extends BaseActionBean {
 
@@ -63,7 +63,7 @@ public class RecordingsActionBean extends BaseActionBean {
             page.setNumItemsShowing(recordings.size());
         } else {
             page.setTotalItemsFound(repositoryService.countRecordings());
-            recordings = repositoryService.fetchRecordings( page);
+            recordings = repositoryService.fetchRecordings(page);
             page.setNumItemsShowing(recordings.size());
         }
         return new ForwardResolution(LIST_JSP);
@@ -74,7 +74,8 @@ public class RecordingsActionBean extends BaseActionBean {
         repositoryService.getRepository().delete(recording);
         return new RedirectResolution(getListPage());
     }
-    public String getListPage(){
+
+    public String getListPage() {
         return "/web/recordings";
     }
 
@@ -147,7 +148,7 @@ public class RecordingsActionBean extends BaseActionBean {
         return LIST_JSP;
     }
 
-    public String getPageTitle(){
+    public String getPageTitle() {
         return "Recordings";
     }
 

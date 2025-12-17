@@ -64,6 +64,13 @@
                         </c:if>
                      </security:protected-element>
 
+                         <c:if test="${actionBean.navSection == 'uploads'}">
+                             <li class="current"><d:link href="/web/upload"><fmt:message key="uploadlabel"/></d:link></li>
+                         </c:if>
+                         <c:if test="${actionBean.navSection != 'uploads'}">
+                             <li><d:link href="/web/upload"><fmt:message key="uploadlabel"/></d:link></li>
+                         </c:if>
+
                          <c:if test="${actionBean.navSection == 'recordings'}">
                              <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
                          </c:if>

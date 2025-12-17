@@ -26,10 +26,6 @@ public class Attachment extends BaseEntity {
     @Column(nullable = false, length = 72)
     @NotNull
     private String contentType;
-
-    @Enumerated
-    private DocType docType;
-
     public Attachment getCopy() {
         Attachment copy = new Attachment();
         copy.setName(name);

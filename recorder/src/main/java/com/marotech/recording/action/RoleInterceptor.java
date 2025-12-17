@@ -82,6 +82,7 @@ public class RoleInterceptor implements Interceptor, ConfigurableComponent {
         }
         return executionContext.proceed();
     }
+
     public static final String WEB_USER_LOGIN = "/web/login";
     private static final Logger LOG = LoggerFactory.getLogger(RoleInterceptor.class);
 }

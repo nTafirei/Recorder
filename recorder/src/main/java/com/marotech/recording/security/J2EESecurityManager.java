@@ -100,12 +100,12 @@ public class J2EESecurityManager {
     }
 
     protected Boolean isUserAuthenticated(ActionBean bean) {
-        BaseActionBean baseActionBean = (BaseActionBean)bean;
+        BaseActionBean baseActionBean = (BaseActionBean) bean;
         return baseActionBean.getIsLoggedIn();
     }
 
     protected User getUserAuthenticated(ActionBean bean) {
-        BaseActionBean baseActionBean = (BaseActionBean)bean;
+        BaseActionBean baseActionBean = (BaseActionBean) bean;
         return baseActionBean.getCurrentUser();
     }
 

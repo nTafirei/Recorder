@@ -135,7 +135,7 @@ public class EditUserActionBean extends BaseActionBean {
     public Resolution save() throws Exception {
 
         AuthUser existing = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
-        if(existing != null && !existing.getMobileNumber().equals(mobileNumber)){
+        if (existing != null && !existing.getMobileNumber().equals(mobileNumber)) {
             getContext().getValidationErrors().add("mobileNumber",
                     new LocalizableError("mobilenumberistaken"));
             return new ForwardResolution(JSP);
@@ -178,7 +178,7 @@ public class EditUserActionBean extends BaseActionBean {
             activity.setTitle(getCurrentUser().getFullName() + " edited user " + user.getFullName() + " on " + LocalDate.now());
             repositoryService.save(activity);
         }
-        return new RedirectResolution( "/web/user-details/" + user.getId());
+        return new RedirectResolution("/web/user-details/" + user.getId());
     }
 
     public ActiveStatus[] getActiveStatuses() {

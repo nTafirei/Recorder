@@ -1,6 +1,8 @@
 package com.marotech.recording.ws;
 
 import com.marotech.recording.config.Config;
+import com.marotech.recording.model.*;
+import com.marotech.recording.service.RepositoryService;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,6 +24,8 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
 
     @Autowired
     private Config config;
+    @Autowired
+    private RepositoryService repositoryService;
 
     private final Map<String, ByteArrayOutputStream> buffers = new ConcurrentHashMap<>();
     private final Map<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
@@ -34,7 +39,7 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        String mobileNumber = getMobileNumberFromHeaders(session);
+        String mobileNumber = getHeader("Mobile-Number",session);
         if (mobileNumber != null) {
             sessions.put(mobileNumber, session);
             LOG.info("Session established for mobile: {}", mobileNumber);
@@ -59,9 +64,11 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
         sessions.entrySet().removeIf(entry -> entry.getValue().getId().equals(sessionId));
 
         if (baos != null) {
-            String mobileNumber = getMobileNumberFromHeaders(session);
-            String name = (mobileNumber != null ? mobileNumber : "unknown") + "_" + sessionId;
-            String filePath = saveDir + File.separator + name + ".wav";
+            String mobileNumber = getHeader("Mobile-Number",session);
+            String fileName = getHeader("File-Name",session);
+            String contentType = getHeader("Content-Type",session);
+            String location = getHeader("Device-Location",session);
+            String filePath = saveDir + File.separator + fileName;
 
             try (FileOutputStream fos = new FileOutputStream(filePath)) {
                 baos.writeTo(fos);
@@ -69,21 +76,49 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
             } catch (IOException e) {
                 LOG.error("Failed to save audio for session {} to {}", sessionId, filePath, e);
             }
+            AuthUser authUser = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
+
+            Attachment attachment = new Attachment();
+            byte[] array = baos.toByteArray();
+            attachment.setData(array);
+            attachment.setContentType(contentType);
+            attachment.setSize(array.length);
+            attachment.setName(fileName);
+            repositoryService.save(attachment);
+
+            Recording recording = new Recording();
+            recording.setAttachment(attachment);
+            recording.setUser(authUser.getUser());
+            recording.setDeviceLocation(location);
+            repositoryService.save(recording);
+
+            if (shouldAudit()) {
+                Activity activity = new Activity();
+                User user = authUser.getUser();
+                activity.setActivityType(ActivityType.UPLOADED_RECORDING);
+                activity.setActor(user);
+                activity.setAttachment(attachment);
+                activity.setTitle(user.getFullName()
+                        + " for " + user.getFullName() + " on " + LocalDate.now());
+                repositoryService.save(activity);
+            }
         }
         super.afterConnectionClosed(session, status);
     }
 
-    private String getMobileNumberFromHeaders(WebSocketSession session) {
+    private String getHeader(String name, WebSocketSession session) {
         try {
-            return session.getHandshakeHeaders().get("Mobile-Number") != null
-                    ? session.getHandshakeHeaders().get("Mobile-Number").get(0)
+            return session.getHandshakeHeaders().get(name) != null
+                    ? session.getHandshakeHeaders().get(name).get(0)
                     : null;
         } catch (Exception e) {
             LOG.warn("Error extracting mobile number from headers", e);
             return null;
         }
     }
-
+    protected boolean shouldAudit() {
+        return config.getBooleanProperty("app.should.audit");
+    }
     public void playBackAudio(String mobileNumber, String fileName) {
         WebSocketSession session = sessions.get(mobileNumber);
         if (session != null && session.isOpen()) {

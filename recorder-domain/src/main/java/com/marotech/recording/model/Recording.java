@@ -14,7 +14,7 @@ import lombok.*;
 @Table(name = "recording")
 public class Recording extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column
     private String deviceLocation;
     @NotNull
     @ToString.Exclude

@@ -71,14 +71,16 @@ public abstract class BaseRecordingsActionBean extends BaseActionBean {
         return new ForwardResolution(LIST_JSP);
     }
 
-    public User getUser(){
+    public User getUser() {
         return getCurrentUser();
     }
+
     @HandlesEvent(DELETE)
     public Resolution delete() {
         repositoryService.getRepository().delete(recording);
         return new RedirectResolution(getListPage());
     }
+
     protected abstract String getListPage();
 
     public long getRecordingsSize() {

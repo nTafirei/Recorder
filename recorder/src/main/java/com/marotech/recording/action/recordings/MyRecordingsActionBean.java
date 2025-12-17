@@ -1,23 +1,21 @@
 package com.marotech.recording.action.recordings;
 
 import com.marotech.recording.model.User;
-import lombok.Getter;
-import lombok.Setter;
 import net.sourceforge.stripes.action.UrlBinding;
 
 @UrlBinding("/web/my-recordings")
 public class MyRecordingsActionBean extends BaseRecordingsActionBean {
 
-    public User getUser(){
+    public User getUser() {
         return getCurrentUser();
     }
 
     @Override
-    public String getListPage(){
-        return  LIST_PAGE;
+    public String getListPage() {
+        return LIST_PAGE;
     }
 
-    public String getPageTitle(){
+    public String getPageTitle() {
         return "My Recordings";
     }
 
@@ -25,5 +23,6 @@ public class MyRecordingsActionBean extends BaseRecordingsActionBean {
     public String getNavSection() {
         return "my-recordings";
     }
-    private static final String LIST_PAGE ="/web/my-recordings";
+
+    private static final String LIST_PAGE = "/web/my-recordings";
 }

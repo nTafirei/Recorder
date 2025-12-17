@@ -28,7 +28,7 @@ public enum ActivityType {
     DISABLED_CHARGE_RATE("Disabled Charge Rate", HasAmount.YES),
     DISABLED_USER("Disabled User", HasAmount.NO),
     ENABLED_USER("Enabled User", HasAmount.NO),
-    UPLOADED_ID("Uploaded Id", HasAmount.NO),
+    UPLOADED_RECORDING("Uploaded Recording", HasAmount.NO),
     VERIFIED_USER("Verified User", HasAmount.NO),
     PURCHASE_VIA_AGENT_OK("Purchase via Agent Successful", HasAmount.YES),
     PURCHASE_VIA_AGENT_NOT_OK("Purchase via Agent Failed", HasAmount.YES),
