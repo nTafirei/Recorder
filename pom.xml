@@ -41,7 +41,7 @@
         <logback.version>1.5.20</logback.version>
         <stripes.version>1.6.0-JakartaEE10</stripes.version>
         <xerces.version>2.11.0</xerces.version>
-        <spring.version>6.2.7</spring.version>
+        <spring.version>6.2.15</spring.version>
         <classgraph.version>4.8.179</classgraph.version>
         <spring.data.version>3.5.0</spring.data.version>
         <spring.data.neo4j.version>7.5.0</spring.data.neo4j.version>

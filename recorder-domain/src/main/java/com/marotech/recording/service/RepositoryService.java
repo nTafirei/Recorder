@@ -42,7 +42,8 @@ public class RepositoryService {
         }
         return null;
     }
-    public AppSession fetchAppSessionByMobileNunberAndOTP(String mobileNumber, String otp) {
+
+    public AppSession fetchAppSessionByMobileNumberAndOTP(String mobileNumber, String otp) {
         try {
             return entityManager.createQuery(
                             "SELECT r FROM AppSession r WHERE r.mobileNumber =?1 and u.otp =?2", AppSession.class)
@@ -54,14 +55,48 @@ public class RepositoryService {
         }
     }
 
+    public long countRecordingsForDates(LocalDate fromDate, LocalDate toDate) {
+        return entityManager.createQuery("SELECT count(id) from Recording u where " +
+                        "u.dateCreated BETWEEN ?1 and ?2", Long.class).
+                setParameter(1, fromDate.atStartOfDay()).
+                setParameter(2, toDate.plusDays(1).atStartOfDay())
+                .getSingleResult();
+    }
+
+    //---------------------------------------------------------------------
+    public List<Recording> fetchRecordingsForDates(LocalDate fromDate, LocalDate toDate, Page page) {
+        return entityManager.createQuery("SELECT u from Recording u where " +
+                        "u.dateCreated BETWEEN ?1 and ?2 " +
+                        "ORDER by dateCreated DESC", Recording.class).
+                setParameter(1, fromDate.atStartOfDay()).
+                setParameter(2, toDate.plusDays(1).atStartOfDay())
+                .setFirstResult(page.getFirstResultIndex())
+                .setMaxResults(page.getItemsPerPage())
+                .getResultList();
+    }
+
+    public long countRecordings() {
+        return entityManager.createQuery("SELECT count(id) from Recording u", Long.class)
+                .getSingleResult();
+    }
+
+    public List<Recording> fetchRecordings(Page page) {
+        return entityManager.createQuery("SELECT u from Recording u " +
+                        "ORDER by dateCreated DESC", Recording.class)
+                .setFirstResult(page.getFirstResultIndex())
+                .setMaxResults(page.getItemsPerPage())
+                .getResultList();
+    }
+
     //---------------------------------------------------------------------
     public long countRecordingsForUser(User user) {
         return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 ", Long.class).
                 setParameter(1, user.getId())
                 .getSingleResult();
     }
+
     public List<Recording> fetchRecordingsForUser(User user, LocalDate fromDate,
-                                                         LocalDate toDate, Page page) {
+                                                  LocalDate toDate, Page page) {
         return entityManager.createQuery("SELECT u from Recording u where u.user.id =?1 " +
                         "AND u.dateCreated BETWEEN ?2 and ?3 " +
                         "ORDER by dateCreated DESC", Recording.class).
@@ -83,7 +118,7 @@ public class RepositoryService {
     }
 
     public long countRecordingsForUser(User user, LocalDate fromDate,
-                                                LocalDate toDate) {
+                                       LocalDate toDate) {
         return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 " +
                         "AND u.dateCreated BETWEEN ?2 and ?3", Long.class).
                 setParameter(1, user.getId()).
@@ -101,6 +136,7 @@ public class RepositoryService {
         }
         return null;
     }
+
     public List<User> fetchAllUsersByRoleNames(List<String> roleNames) {
         String jpql = "SELECT DISTINCT u FROM User u JOIN u.userRoles r WHERE r.roleName IN :roleNames";
         TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
@@ -116,12 +152,14 @@ public class RepositoryService {
         query.setParameter("status", ActiveStatus.ACTIVE);
         return query.getResultList();
     }
+
     public List<Recording> fetchRecordingsByUser(User user) {
         return entityManager.createQuery(
                         "SELECT r FROM Recording r WHERE r.user =?1", Recording.class)
                 .setParameter(1, user)
                 .getResultList();
     }
+
     public List<Recording> fetchByMobileNumber(String mobileNumber) {
         return entityManager.createQuery(
                         "SELECT r FROM FSM r WHERE r.user.mobileNumber =?1", Recording.class)
@@ -199,6 +237,7 @@ public class RepositoryService {
             return null;
         }
     }
+
     public Recording fetchRecordingById(String id) {
         try {
             return entityManager.createQuery("SELECT u from Recording u where u.id =?1", Recording.class).
@@ -496,4 +535,6 @@ public class RepositoryService {
     public static final String ORG_ID = "orgId";
     public static final String TAX_AUTHORITY_NAME = "tax.authority.name";
     private static final Logger LOG = LoggerFactory.getLogger(RepositoryService.class);
+
+
 }

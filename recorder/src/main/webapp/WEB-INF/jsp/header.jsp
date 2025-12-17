@@ -32,13 +32,6 @@
                             <li ><d:link href="/web/pre-register"><fmt:message key="registermenu"/></d:link></li>
                     </c:if>
                 </c:if>
-                         <c:if test="${actionBean.navSection == 'recordings'}">
-                             <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'recordings'}">
-                             <li><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
-                         </c:if>
-
                         <c:if test="${actionBean.navSection == 'tools'}">
                              <li class="current"><d:link href="/web/tools"><fmt:message key="toolslabel"/></d:link></li>
                          </c:if>
@@ -64,12 +57,19 @@
 
                      <security:protected-element name="view-report-list">
                         <c:if test="${actionBean.navSection == 'reports'}">
-                            <li class="current"><d:link href="/web/reports"><fmt:message key="reportsmenulabel"/></d:link></li>
+                            <li class="current"><d:link href="#"><fmt:message key="reportsmenulabel"/></d:link></li>
                         </c:if>
                         <c:if test="${actionBean.navSection != 'reports'}">
-                                <li ><d:link href="/web/reports"><fmt:message key="reportsmenulabel"/></d:link></li>
+                                <li ><d:link href="#"><fmt:message key="reportsmenulabel"/></d:link></li>
                         </c:if>
                      </security:protected-element>
+
+                         <c:if test="${actionBean.navSection == 'recordings'}">
+                             <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
+                         <c:if test="${actionBean.navSection != 'recordings'}">
+                             <li><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
 
                          <c:if test="${actionBean.navSection == 'my-recordings'}">
                              <li class="current"><d:link href="/web/my-recordings"><fmt:message key="myrecordingslabel"/></d:link></li>

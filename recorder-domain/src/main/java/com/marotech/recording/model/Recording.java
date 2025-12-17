@@ -1,6 +1,7 @@
 package com.marotech.recording.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -13,12 +14,14 @@ import lombok.*;
 @Table(name = "recording")
 public class Recording extends BaseEntity {
 
-    private String mobileNumber;
-
+    @Column(nullable = false)
+    private String deviceLocation;
+    @NotNull
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
+    @NotNull
     @ToString.Exclude
     @OneToOne(fetch = FetchType.EAGER)
     private Attachment attachment;

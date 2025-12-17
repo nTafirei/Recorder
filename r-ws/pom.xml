@@ -20,6 +20,7 @@
         <camel.version>4.12.0</camel.version>
         <lombock.version>1.18.36</lombock.version>
         <pooled.jms.version>3.1.7</pooled.jms.version>
+        <spring.version>6.2.15</spring.version>
         <swagger-annotations.version>1.5.21</swagger-annotations.version>
     </properties>
     <dependencies>
@@ -39,6 +40,11 @@
                         <artifactId>hazelcast</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>com.hazelcast</groupId>

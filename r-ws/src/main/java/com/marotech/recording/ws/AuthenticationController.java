@@ -124,7 +124,7 @@ public class AuthenticationController extends BaseController{
             }
             try {
                 AppSession appSession = repositoryService.
-                        fetchAppSessionByMobileNunberAndOTP(request.getMobileNumber(), request.getOtp());
+                        fetchAppSessionByMobileNumberAndOTP(request.getMobileNumber(), request.getOtp());
                 if (appSession == null) {
                     response.setCode(HttpCode.BAD_REQUEST);
                     response.setMessage("Specified otp and mobile number were not found in our system");

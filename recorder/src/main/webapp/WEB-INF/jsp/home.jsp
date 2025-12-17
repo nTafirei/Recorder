@@ -10,37 +10,36 @@
         <div id="main-wrapper" style="background-color: #fdfdfd; border-radius: 10px 10px 10px 10px;overflow:hidden;">
             <div class="container">
                 <div id="content">
-                    <strong>What is the PayStream platform?</strong><br/>
-                    PayStream allows you to buy pre-paid tokens and vouchers for ZESA, water, fuel and LNG (gas).
+                    <strong>What is the Recorder platform?</strong><br/>
+                    <br>Recorder is a corruption reduction tool. Simple! <br/>
+                    The Recorder platform allows you to record your conversations using our mobile app discreetly.
                     <br/>
-                    You can purchase these vouchers for yourself and friends and family from anywhere in the world.
+                    The conversation is automatically saved on our system in the cloud without further action from you.
                     <br/>
-                    Our platform allows you buy vouchers using any smart phone, USSD (mbudzi or chidhinha phone), as well as
-                    using our website.
+                    The intention is to allow people to record fraud, bribes ad extortion. The recordings can then be
+                    used in reporting to ZACC, the police as well as be used in a court of law.
                     <br/>
-                    We accept all mobile wallets registered in Zimbabwe.<br/>
-                    We accept all currencies in use in Zimbabwe.<br/>
-                    We accept all bank cards used in Zimbabwe.<br/>
-                    Further, we accept all international Visa and Mastercard cards.<br/>
-                    Once you have purchased your voucher, you will be sent the voucher by SMS and email.<br/>
-                    You then simply present the voucher number to the appropriate merchant as noted below.
+                    We use Artificial Intelligence (AI) to identify the parties involved.<br/>
+                    However, you should always ask for the officer's name and identification (this is allowed by law).
+                    <br/>
+                    Always make sure you capture the officer's name or identification verbally so that the app can pick
+                    it up and record it for later use. Do this at the beginning of the conversation.
+
+<br/><br/>
+                    <strong>Scenario:</strong><br/>
+                    You are driving. You get stopped by police. You immediately start the Recorder Mobile App
+                    to capture the conversation.
+                    <br/>
+                    The police officer ask for a bribe. You can pay it and later report the matter to ZACC using
+                    Recorder as evidence, or, you can refuse to pay and inform the officer that he/she has been
+                    recorded and will be reported to ZACC.
+                    <br/>
+                    You can even play the recording to the officer. Even if they delete the recording from your device,
+                    it does noy matter since it is automatically uploaded to our computers in the cloud.
 
 <br/><br/>
                     <strong>Benefits:</strong><br/>
-                    The PayStream service allows you to purchase services without needing to present or transfer cash.<br/>
-                    This is especially beneficial when you need to pay products for friends or family without having to send money.<br/>
-                    This service is especially beneficial to those in the diaspora as it allows you to save a great deal
-                    on transactions fees associated with money transfer services.
-                    <br/><br/>
-                    <strong>Fulfillment:</strong><br/>
-                    For ZESA: simply enter the voucher number into your pre-paid metre.<br/>
-                    For water: simple enter the voucher number into your pre-paid water metre.<br/>
-                    For fuel: simply present the voucher or voucher number to the fuel attendant.
-                    <a href="">See all fuel stations nearby accepting our vouchers</a>
-                    <br/>
-                    For LNG (gas), simply present the voucher or voucher number to an authorised agent.
-                    <a href="">See all agents nearby accepting our vouchers</a>
-
+                    You protect yourself from bribes and extortion by the police and civil servants
                 </div>
             </div>
         </div>

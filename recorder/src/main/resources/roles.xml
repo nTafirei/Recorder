@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <roles>
     <role name="User" vendorSpecific="false" merchantSpecific="false"/>
-    <role name="Agent" vendorSpecific="false" merchantSpecific="false"/>
-    <role name="Float Manager" vendorSpecific="false" merchantSpecific="false"/>
     <role name="Customer Service" vendorSpecific="false" merchantSpecific="false"/>
-    <role name="Vendor Account Administrator" vendorSpecific="true" merchantSpecific="false"/>
-    <role name="Merchant Account Administrator" vendorSpecific="false" merchantSpecific="true"/>
     <role name="System Administrator" vendorSpecific="false" merchantSpecific="false"/>
 </roles>
