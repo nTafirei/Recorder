@@ -13,7 +13,7 @@ import net.sourceforge.stripes.validation.Validate;
 
 import java.io.ByteArrayInputStream;
 
-@UrlBinding("/web/download-attachment")
+@UrlBinding("/web/download")
 public class DownloadAttachmentAction extends BaseActionBean {
 
     @Getter

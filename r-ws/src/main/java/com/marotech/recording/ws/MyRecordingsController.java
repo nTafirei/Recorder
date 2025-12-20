@@ -1,11 +1,7 @@
 package com.marotech.recording.ws;
 
 
-import com.marotech.recording.api.RecordingDTO;
-import com.marotech.recording.api.RecordingsRequest;
-import com.marotech.recording.api.HttpCode;
-import com.marotech.recording.api.ResponseType;
-import com.marotech.recording.api.ServiceResponse;
+import com.marotech.recording.api.*;
 import com.marotech.recording.model.AppSession;
 import com.marotech.recording.model.AuthUser;
 import com.marotech.recording.model.Recording;
@@ -32,7 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/my-recordings")
-public class MyRecordingsController extends BaseController{
+public class MyRecordingsController extends BaseController {
 
     @Autowired
     private RepositoryService repositoryService;
@@ -50,7 +46,7 @@ public class MyRecordingsController extends BaseController{
     public ResponseEntity<ServiceResponse>
     getMyRecordings(@RequestBody RecordingsRequest request) {
         ServiceResponse response = new ServiceResponse();
-        response.setResponseType(ResponseType.VOUCHERS);
+        response.setResponseType(ResponseType.RECORDINGS);
         try {
             if (request == null) {
                 response.setCode(HttpCode.BAD_REQUEST);
@@ -59,7 +55,7 @@ public class MyRecordingsController extends BaseController{
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
             validateRequest(request, response);
-            if(response.getCode() != HttpCode.OK){
+            if (response.getCode() != HttpCode.OK) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
 
@@ -83,7 +79,7 @@ public class MyRecordingsController extends BaseController{
             User user = authUser.getUser();
             List<RecordingDTO> dtos = null;
 
-            if(request.getStartDate() == null) {
+            if (request.getStartDate() == null) {
                 List<Recording> recordings = repositoryService.fetchRecordingsForUser(user, request.getPage());
                 if (recordings.isEmpty()) {
                     response.setMessage(NO_VOUCHERS_FOUND);
@@ -93,7 +89,7 @@ public class MyRecordingsController extends BaseController{
                 for (Recording recording : recordings) {
                     dtos = populateRecordingTOs(recording);
                 }
-            }else{
+            } else {
                 List<Recording> recordings = repositoryService.fetchRecordingsForUser(user, request.getStartDate(),
                         request.getEndDate(), request.getPage());
                 if (recordings.isEmpty()) {
@@ -105,10 +101,10 @@ public class MyRecordingsController extends BaseController{
                 }
             }
 
-            response.getAdditionalInfo().put(VOUCHERS, GSON.toJson(dtos));
+            response.getAdditionalInfo().put(RECORDINGS, GSON.toJson(dtos));
             appSession.setDateLastUpdated(LocalDateTime.now());
             repositoryService.save(appSession);
-            response.setResponseType(ResponseType.VOUCHERS);
+            response.setResponseType(ResponseType.RECORDINGS);
             response.getAdditionalInfo().put(TTL, config.getProperty(APP_SESSION_TTL));
             return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (Exception e) {
@@ -123,8 +119,10 @@ public class MyRecordingsController extends BaseController{
         List<RecordingDTO> dtos = new ArrayList<>();
         RecordingDTO dto = new RecordingDTO();
         dto.setId(recording.getId());
+        dto.setName(recording.getName());
+        dto.setDeviceLocation(recording.getDeviceLocation());
         dtos.add(dto);
-        return  dtos;
+        return dtos;
     }
 
     private void validateRequest(RecordingsRequest request, ServiceResponse serviceResponse) {

@@ -16,6 +16,7 @@ import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -105,7 +106,11 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
         }
         super.afterConnectionClosed(session, status);
     }
-
+    public List<String> getContentTypes(){
+        String str = config.getProperty("app.content.types");
+        String[] array = str.split(",");
+        return Arrays.asList(array);
+    }
     private String getHeader(String name, WebSocketSession session) {
         try {
             return session.getHandshakeHeaders().get(name) != null

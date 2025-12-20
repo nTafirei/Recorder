@@ -16,9 +16,10 @@
                 <div id="content">
                     <s:errors/>
                     <c:if test="${empty actionBean.recordings}">
-                        <fmt:message key="norecordingsfound"/> for ${actionBean.searchDates}
+                        <fmt:message key="norecordingsfound"/> for ${actionBean.user.fullName} for ${actionBean.searchDates}
                     </c:if>
                         <s:form action="${actionBean.listPage}" name="createForm" id="createForm" method="post">
+                            <input type="hidden" name="user" id="user" value="${actionBean.user.id}"/>
                             <table width="100%">
                                 <tr>
                                     <td align="center" colspan = "3">
@@ -27,12 +28,12 @@
                                             <fmt:message key="showinglabel"/>
                                             ${actionBean.page.numItemsShowing} of
                                             ${actionBean.page.totalItemsFound}.
-                                            ${actionBean.page.totalItemsFound}<fmt:message key="recordings"/> for ${actionBean.searchDates},
+                                            ${actionBean.page.totalItemsFound} <fmt:message key="recordings"/> for ${actionBean.user.fullName} for ${actionBean.searchDates},
                                             page is ${actionBean.page.currPage}.
                                                     <br/>
                                                     <c:forEach items="${actionBean.page.pageNumbers}" var="pageItem"
                                                                                               varStatus="loopStatus">
-                                                      <d:link href="${actionBean.listPage}?currPage=${pageItem}">${pageItem}</d:link> |
+                                                      <d:link href="${actionBean.listPage}?currPage=${pageItem}&user=${actionBean.user.id}">${pageItem}</d:link> |
                                                     </c:forEach>
                                         </c:if>
                                     </td>
@@ -56,6 +57,9 @@
                             <thead>
                             <tr>
                                 <th align="left">
+                                    <fmt:message key="namelabel"/>
+                                </th>
+                                <th align="left">
                                     <fmt:message key="locationlabel"/>
                                 </th>
                                 <th align="left">
@@ -71,6 +75,9 @@
                                        varStatus="loopStatus">
                                 <tr class="${loopStatus.index % 2 == 0 ? 'even' : 'odd'}">
                                     <td>
+                                            ${recording.name}
+                                    </td>
+                                    <td>
                                             ${recording.deviceLocation}
                                     </td>
                                     <td>
@@ -78,11 +85,11 @@
                                     </td>
                                     <td>
                                                  <d:link
-                                                             href="/web/download?attachment=${recording.attachment.id}">
+                                                             href="/web/download?attachment=${recording.attachment.id}" target="_blank">
                                                              <fmt:message key="listenlabel"/>
                                                  </d:link>
-                                                 <d:link
-                                                             href="/web/inbox?recording=${message.id}&_eventName=delete">
+                                                 | <d:link
+                                                             href="/web/recordings?recording=${recording.id}&_eventName=delete">
                                                              <fmt:message key="deletelabel"/>
                                                  </d:link>
                                     </td>

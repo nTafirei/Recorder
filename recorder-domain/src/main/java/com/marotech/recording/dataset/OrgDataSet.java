@@ -5,6 +5,7 @@ import com.marotech.recording.config.Config;
 import com.marotech.recording.model.*;
 import com.marotech.recording.repository.jdbc.GenericJDBCRepository;
 import com.marotech.recording.service.RepositoryService;
+import com.marotech.recording.util.Constants;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +32,14 @@ public class OrgDataSet {
             }
             String ext = "uk";
 
-            String adminEmail = "paystream_system_admin@paystream.co." + ext;
             long num = repositoryService.countAuthUsers();
             if (num > 0) {
                 return;
             }
+            String adminEmail = "paystream_system_admin@paystream.co." + ext;
+            createAdminUser(adminEmail);
 
-            if(!isProd) {
+            if (!isProd) {
                 createOrgUsers();
             }
         } catch (Exception e) {
@@ -47,6 +49,49 @@ public class OrgDataSet {
         }
     }
 
+    private void createAdminUser(String adminEmail) throws Exception {
+
+        AuthUser authUser = new AuthUser();
+        authUser.setUserName("0712374658");
+        authUser.setMobileNumber("0712374658");
+        String newPassword = AuthUser.encodedPassword("test");
+        authUser.setPassword(newPassword);
+        createSecurityQuestions(authUser);
+
+        repository.save(authUser);
+        User adminUser = new User();
+        adminUser.setNationalId("12345001");
+
+        adminUser.setFirstName("System Admin");
+        adminUser.setLastName("System Admin");
+        adminUser.setMiddleName("System Admin");
+        adminUser.setEmail(adminEmail);
+
+        Address address = new Address();
+        address.setCountry(config.getProperty("country"));
+        address.setAddress("80 Samora Machel Avenue");
+        address.setCity("Harare");
+        repositoryService.save(address);
+        adminUser.setAddress(address);
+        adminUser.setNationalId("0712374658");
+        adminUser.setMobileNumber("0712374658");
+        adminUser.setDateOfBirth(LocalDate.now().minusYears(40));
+        repository.save(adminUser);
+
+        Iterable<UserRole> roles = repositoryService.fetchAllRoles();
+
+        for (UserRole role : roles) {
+            if (role.getRoleName().equals(Constants.SYS_ADMIN)
+                    || role.getRoleName().equals(Constants.ADMIN)) {
+                adminUser.addUserRole(role);
+                break;
+            }
+        }
+
+        repository.save(adminUser);
+        authUser.setUser(adminUser);
+        repository.save(authUser);
+    }
 
     private void createSecurityQuestions(AuthUser authUser) {
         SecurityQuestion question = new SecurityQuestion();

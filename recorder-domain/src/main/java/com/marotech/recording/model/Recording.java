@@ -14,6 +14,8 @@ import lombok.*;
 @Table(name = "recording")
 public class Recording extends BaseEntity {
 
+    @Column(nullable = false)
+    private String name;
     @Column
     private String deviceLocation;
     @NotNull
@@ -25,4 +27,11 @@ public class Recording extends BaseEntity {
     @ToString.Exclude
     @OneToOne(fetch = FetchType.EAGER)
     private Attachment attachment;
+
+    public Boolean getIsAudio(){
+        return attachment.getContentType().toLowerCase().startsWith("audio");
+    }
+    public Boolean getIsVideo(){
+        return attachment.getContentType().toLowerCase().startsWith("video");
+    }
 }

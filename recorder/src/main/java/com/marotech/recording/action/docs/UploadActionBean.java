@@ -2,12 +2,11 @@ package com.marotech.recording.action.docs;
 
 
 import com.marotech.recording.action.BaseActionBean;
-import com.marotech.recording.action.RequiresOneRoleOf;
-import com.marotech.recording.action.converters.EnumConverter;
-import com.marotech.recording.action.converters.UserConverter;
-import com.marotech.recording.model.*;
+import com.marotech.recording.model.Activity;
+import com.marotech.recording.model.ActivityType;
+import com.marotech.recording.model.Attachment;
+import com.marotech.recording.model.Recording;
 import com.marotech.recording.service.RepositoryService;
-import com.marotech.recording.util.Constants;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,13 +15,15 @@ import lombok.Setter;
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.LocalizableError;
-import net.sourceforge.stripes.validation.Validate;
+import net.sourceforge.stripes.validation.SimpleError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet
 @MultipartConfig(fileSizeThreshold = 20971520) // 20MB
@@ -56,29 +57,31 @@ public class UploadActionBean extends BaseActionBean {
         try {
             inputStream = fileBean.getInputStream();
             byte[] bytes = inputStream.readAllBytes();
-            String fileName = fileBean.getFileName();
-            boolean valid = false;
-            if (fileName.toLowerCase().endsWith(".pdf")
-                    || fileName.toLowerCase().endsWith(".txt")) {
-                valid = true;
-            }
-            if (!valid) {
+            List<String> types = getContentTypes();
+
+/*            if (!types.contains(fileBean.getContentType())) {
                 getContext().getValidationErrors().add("fileBean",
-                        new LocalizableError("invalidformatfound"));
+                        new SimpleError("Files of type " + fileBean.getContentType() +
+                                " cannot be accepted. Please try again with an audio or video file"));
                 return new ForwardResolution(JSP);
-            }
+            }*/
             createDocument(bytes);
             message = "File has been accepted for processing";
         } catch (Exception e) {
             LOG.error("Error", e);
             getContext().getValidationErrors().add("fileBean",
-                    new LocalizableError("filenotfound"));
+                    new SimpleError(e.getMessage()));
         }
 
         if (getContext().getValidationErrors().keySet().size() > 0) {
             return new ForwardResolution(JSP);
         }
         return null;
+    }
+    public List<String> getContentTypes(){
+        String str = config.getProperty("app.content.types");
+        String[] array = str.split(",");
+        return Arrays.asList(array);
     }
 
     private void createDocument(byte[] bytes) {
@@ -101,6 +104,7 @@ public class UploadActionBean extends BaseActionBean {
         Recording recording = new Recording();
         recording.setAttachment(attachment);
         recording.setUser(getCurrentUser());
+        recording.setName(fileBean.getFileName());
         repositoryService.save(recording);
 
         if (shouldAudit()) {

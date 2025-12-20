@@ -18,14 +18,6 @@
                             ${actionBean.currentUser.firstName} ${actionBean.currentUser.lastName}
                         </c:if>
              <thead>
-                    <tr>
-                            <td colspan="7">
-                              <fmt:message key="accounthistoryforlabel"/>
-                              ${actionBean.currentUser.fullName} (${actionBean.currentUser.mobileNumber}).
-                              <fmt:message key="currentbalancelabel"/> is
-                              $${actionBean.currentUser.account.availableBalance.amount} USD
-                            </td>
-                    </tr>
                                 <tr>
                                     <td>
                                         <fmt:message key="datecreatedlabel"/>

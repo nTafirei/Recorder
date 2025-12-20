@@ -90,36 +90,6 @@
                                      </c:forEach>
                                  </td>
                              </tr>
-                             <c:if test="${actionBean.user.isAgent}">
-                                <tr>
-                                     <td class="strong">
-                                        <fmt:message key="agentforlabel"/>
-                                     </td>
-                                     <td>
-                                         ${actionBean.user.vendor.name}
-                                     </td>
-                                 </tr>
-                             </c:if>
-                             <c:if test="${actionBean.user.isVendorAdmin}">
-                                <tr>
-                                     <td class="strong">
-                                        <fmt:message key="vendoradminforlabel"/>
-                                     </td>
-                                     <td>
-                                         ${actionBean.user.vendor.name}
-                                     </td>
-                                 </tr>
-                             </c:if>
-                             <c:if test="${actionBean.user.isMerchantAdmin}">
-                                <tr>
-                                     <td class="strong">
-                                        <fmt:message key="merchantadminforlabel"/>
-                                     </td>
-                                     <td>
-                                         ${actionBean.user.merchant.name}
-                                     </td>
-                                 </tr>
-                             </c:if>
                               <tr>
                                   <td class="strong">
                                      <fmt:message key="emaillabel"/>
@@ -130,53 +100,10 @@
                               </tr>
                               <tr>
                                   <td class="strong">
-                                     <fmt:message key="balance"/>
-                                  </td>
-                                  <td>
-                                      ${actionBean.user.account.availableBalance.amount}
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="strong">
                                      <fmt:message key="statuslabel"/>
                                   </td>
                                   <td>
                                       ${actionBean.user.activeStatus.status}
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="strong">
-                                     <fmt:message key="loyaltypointslabel"/>
-                                  </td>
-                                  <td>
-                                      ${actionBean.rewardPoints.points}
-                                      <c:if test="${actionBean.rewardPoints.canRedeem}">
-                                        | <d:link href="/web/redeem-my-points">
-                                              <fmt:message key="redeemlabel"/> ${actionBean.rewardPoints.redeemableAmount} ${actionBean.purchaseCurrency}
-                                        </d:link>
-                                      </c:if>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="strong">
-                                     <fmt:message key="verified"/>?
-                                  </td>
-                                  <td>
-                                      ${actionBean.user.verified.type}
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="strong">
-                                     <fmt:message key="iduploadedlabel"/>?
-                                  </td>
-                                  <td>
-
-                                                       <c:if test="${!empty actionBean.user.photoId}">
-                                                         Yes
-                                                        </c:if>
-                                                       <c:if test="${empty actionBean.user.photoId}">
-                                                            No
-                                                        </c:if>
                                   </td>
                               </tr>
                               <tr>

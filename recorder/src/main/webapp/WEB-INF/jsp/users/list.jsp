@@ -60,9 +60,7 @@
                                      <td>
                                          <fmt:message key="statuslabel"/>
                                      </td>
-                                     <td>
-                                         <fmt:message key="balance"/>
-                                     </td>
+
                                     <td align="right">
                                         <fmt:message key="actionlabel"/>
                                     </td>
@@ -88,26 +86,11 @@
                                         <td nowrap="nowrap">
                                              ${user.activeStatus.status}
                                         </td>
-                                        <td nowrap="nowrap">
-                                             ${user.account.availableBalance.amount} ${user.account.currency}
-                                        </td>
                                          <td align="right">
                                                  <d:link
                                                              href="/web/user-details/${user.id}">
                                                              <fmt:message key="detaillabel"/>
                                                    </d:link>
-                                                 <security:protected-element name="view-user-transactions">
-                                                     | <d:link
-                                                                 href="/web/user-transaction-history/${user.id}">
-                                                                 <fmt:message key="transactionhistorylabel"/>
-                                                       </d:link>
-                                                 </security:protected-element>
-                                                 <security:protected-element name="top-up-users">
-                                                     | <d:link
-                                                                 href="/web/top-up?user=${user.id}">
-                                                                 <fmt:message key="topuplabel"/>
-                                                       </d:link>
-                                                 </security:protected-element>
 
                                                  <security:protected-element name="edit-users">
                                                      | <d:link
@@ -127,24 +110,6 @@
                                                         </d:link>
                                                      </c:if>
                                                  </security:protected-element>
-                                                <c:if test="${actionBean.user.verified == 'NO'}">
-                                                     <security:protected-element name="verify-users">
-                                                           |
-                                                           <d:link
-                                                           href="/web/verify-user?user=${actionBean.user.id}&_eventName=verify">
-                                                           <fmt:message key="verifyuserlabel"/>
-                                                           </d:link>
-                                                     </security:protected-element>
-                                                </c:if>
-                                               <c:if test="${user.verified == 'NO'}">
-                                                     <security:protected-element name="verify-users">
-                                                           |
-                                                           <d:link
-                                                           href="/web/verify-user/${user.id}/verify">
-                                                           <fmt:message key="verifyuserlabel"/>
-                                                           </d:link>
-                                                     </security:protected-element>
-                                                </c:if>
                                         </td>
                                     </tr>
                                     </c:if>

@@ -20,9 +20,13 @@ public class MyRecordingsActionBean extends BaseRecordingsActionBean {
     }
 
     @Override
+    public String getJsp() {
+        return LIST_JSP;
+    }
+    @Override
     public String getNavSection() {
         return "my-recordings";
     }
-
+    private static final String LIST_JSP = "/WEB-INF/jsp/recordings/my-list.jsp";
     private static final String LIST_PAGE = "/web/my-recordings";
 }

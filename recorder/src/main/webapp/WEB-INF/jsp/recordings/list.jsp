@@ -28,7 +28,7 @@
                                             <fmt:message key="showinglabel"/>
                                             ${actionBean.page.numItemsShowing} of
                                             ${actionBean.page.totalItemsFound}.
-                                            ${actionBean.page.totalItemsFound}<fmt:message key="recordings"/> for ${actionBean.user.fullName} for ${actionBean.searchDates},
+                                            ${actionBean.page.totalItemsFound} <fmt:message key="recordings"/> for ${actionBean.user.fullName} for ${actionBean.searchDates},
                                             page is ${actionBean.page.currPage}.
                                                     <br/>
                                                     <c:forEach items="${actionBean.page.pageNumbers}" var="pageItem"
@@ -57,16 +57,13 @@
                             <thead>
                             <tr>
                                 <th align="left">
-                                    <fmt:message key="fromlabel"/>
+                                    <fmt:message key="namelabel"/>
                                 </th>
                                 <th align="left">
-                                    <fmt:message key="subjectlabel"/>
+                                    <fmt:message key="locationlabel"/>
                                 </th>
                                 <th align="left">
                                     <fmt:message key="datecreatedlabel"/>
-                                </th>
-                                <th align="left">
-                                    <fmt:message key="bodylabel"/>
                                 </th>
                                 <th align="left">
                                     <fmt:message key="actionlabel"/>
@@ -81,17 +78,22 @@
                                             ${recording.name}
                                     </td>
                                     <td>
+                                            ${recording.deviceLocation}
+                                    </td>
+                                    <td>
                                             ${recording.formattedDateCreated}
                                     </td>
                                     <td>
                                                  <d:link
-                                                             href="/web/download?attachment=${recording.attachment.id}">
+                                                             href="/web/download?attachment=${recording.attachment.id}" target="_blank">
                                                              <fmt:message key="listenlabel"/>
                                                  </d:link>
-                                                 <d:link
-                                                             href="/web/inbox?recording=${message.id}&_eventName=delete">
+                                          <security:protected-element name="manage-recordings">
+                                                 | <d:link
+                                                             href="/web/recordings?recording=${recording.id}&_eventName=delete">
                                                              <fmt:message key="deletelabel"/>
                                                  </d:link>
+                                          </security:protected-element>
                                     </td>
                                 </tr>
                             </c:forEach>

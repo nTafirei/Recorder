@@ -91,7 +91,7 @@
 
         <empty-queue-ttl>-1</empty-queue-ttl>
     </queue>
-    <map name="paystream_session_map">
+    <map name="recorder_session_map">
         <!--
            Data type that will be used for storing recordMap.
            Possible values:

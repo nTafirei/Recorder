@@ -19,11 +19,15 @@ public class UserRecordingsActionBean extends BaseRecordingsActionBean {
     public String getPageTitle() {
         return "User Recordings";
     }
-
+    @Override
+    public String getJsp() {
+        return LIST_JSP;
+    }
     @Override
     public String getListPage() {
         return LIST_PAGE;
     }
 
     private static final String LIST_PAGE = "/web/user-recordings";
+    private static final String LIST_JSP = "/WEB-INF/jsp/recordings/list.jsp";
 }

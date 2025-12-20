@@ -43,6 +43,7 @@ public class RepositoryService {
         return null;
     }
 
+    //DO NOT DELETE!
     public AppSession fetchAppSessionByMobileNumberAndOTP(String mobileNumber, String otp) {
         try {
             return entityManager.createQuery(

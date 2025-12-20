@@ -9,6 +9,9 @@
         <role name="Customer Service"/>
         <role name="System Administrator"/>
     </protected-element>
+    <protected-element name="disable-users">
+        <role name="System Administrator"/>
+    </protected-element>
     <protected-element name="edit-users">
         <role name="Customer Service"/>
         <role name="System Administrator"/>

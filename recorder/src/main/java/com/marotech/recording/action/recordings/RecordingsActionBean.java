@@ -55,8 +55,11 @@ public class RecordingsActionBean extends BaseActionBean {
 
     @HandlesEvent(SEARCH)
     public Resolution search() {
-        configurePagination();
         validateDates();
+        if (context.getValidationErrors().size() > 0) {
+            return new ForwardResolution(getJsp());
+        }
+        configurePagination();
         if (fromDate != null && toDate != null) {
             page.setTotalItemsFound(repositoryService.countRecordingsForDates(fromDate, toDate));
             recordings = repositoryService.fetchRecordingsForDates(fromDate, toDate, page);
@@ -80,17 +83,24 @@ public class RecordingsActionBean extends BaseActionBean {
     }
 
     public long getRecordingsSize() {
+        if (recordings == null || recordings.isEmpty()) {
+            return 0;
+        }
         return recordings.size();
     }
 
-    protected void configurePagination() {
+    private void configurePagination() {
         String pageNumber = getContext().getRequest().getParameter(Constants.CURR_PAGE);
         if (StringUtils.isBlank(pageNumber)) {
             pageNumber = "1";
         }
 
         int pageSize = config.getIntegerProperty(Constants.PAGINATION_SIZE);
-        page.setCurrPage(Integer.valueOf(pageNumber));
+        try {
+            page.setCurrPage(Math.max(1, Integer.parseInt(pageNumber)));
+        } catch (NumberFormatException e) {
+            page.setCurrPage(1);
+        }
         page.setItemsPerPage(pageSize);
     }
 
@@ -106,35 +116,30 @@ public class RecordingsActionBean extends BaseActionBean {
         return fmt.format(LocalDate.now());
     }
 
-    public void validateDates() {
-        if (startDate != null && endDate == null) {
-            getContext().getValidationErrors().add("startDate",
-                    new LocalizableError("alldatesmustbespecified"));
-        } else if (startDate == null && endDate != null) {
-            getContext().getValidationErrors().add("startDate",
-                    new LocalizableError("alldatesmustbespecified"));
+    private void validateDates() {
+        if ((startDate == null) != (endDate == null)) {
+            getContext().getValidationErrors()
+                    .add("startDate", new LocalizableError("alldatesmustbespecified"));
+            return;
         }
-        if (startDate != null && endDate != null) {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
-                fromDate = LocalDate.parse(startDate, formatter);
-            } catch (Exception e) {
-                getContext().getValidationErrors().add("startDate",
-                        new LocalizableError("notabletoparsedatefrom"));
-            }
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
-                toDate = LocalDate.parse(endDate, formatter);
-            } catch (Exception e) {
-                getContext().getValidationErrors().add("endDate",
-                        new LocalizableError("notabletoparsedateto"));
-            }
+        if (startDate == null || endDate == null) return;
+
+        fromDate = parseDate(startDate, "startDate", "from");
+        toDate = parseDate(endDate, "endDate", "to");
+
+        if (fromDate != null && toDate != null && toDate.isBefore(fromDate)) {
+            getContext().getValidationErrors()
+                    .add("endDate", new LocalizableError("enddatebeforestartdate"));
         }
-        if (fromDate != null && toDate != null) {
-            if (toDate.isBefore(fromDate)) {
-                getContext().getValidationErrors().add("endDate",
-                        new LocalizableError("enddatebeforestartdate"));
-            }
+    }
+
+    private LocalDate parseDate(String dateStr, String field, String tag) {
+        try {
+            return LocalDate.parse(dateStr, BaseRecordingsActionBean.FMT);
+        } catch (Exception e) {
+            getContext().getValidationErrors().add(field,
+                    new LocalizableError("notabletoparsedate" + tag));
+            return null;
         }
     }
 
@@ -145,15 +150,16 @@ public class RecordingsActionBean extends BaseActionBean {
 
     @Override
     protected String getErrorPage() {
-        return LIST_JSP;
+        return getJsp();
     }
 
     public String getPageTitle() {
         return "Recordings";
     }
-
+    public String getJsp() {
+        return LIST_JSP;
+    }
     @SpringBean
     private RepositoryService repositoryService;
-    private static final String PATTERN = "dd-MM-yyyy";
-    private static final String LIST_JSP = "/WEB-INF/jsp/recordings/other-list.jsp";
+    private static final String LIST_JSP = "/WEB-INF/jsp/recordings/list.jsp";
 }

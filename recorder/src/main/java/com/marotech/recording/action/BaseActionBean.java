@@ -354,4 +354,6 @@ public abstract class BaseActionBean extends SecurityAwareActionBean implements
     private static final Logger LOG = LoggerFactory.getLogger(com.marotech.recording.action.BaseActionBean.class);
 
     private static final String WEB_USER_HOME = "/web/home";
+
+
 }
