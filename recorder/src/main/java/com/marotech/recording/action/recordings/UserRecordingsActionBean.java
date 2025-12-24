@@ -11,7 +11,7 @@ public class UserRecordingsActionBean extends BaseRecordingsActionBean {
     @Getter
     @Setter
     private User user;
-
+    @Override
     public User getUser() {
         return user;
     }

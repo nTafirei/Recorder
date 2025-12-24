@@ -4,7 +4,7 @@ import com.github.freva.asciitable.AsciiTable;
 import com.marotech.recording.action.BaseActionBean;
 import com.marotech.recording.action.RequiresOneRoleOf;
 import com.marotech.recording.util.Constants;
-import com.marotech.recording.util.FileReader;
+import com.marotech.recording.util.BytesFileReader;
 import lombok.Getter;
 import lombok.Setter;
 import net.sourceforge.stripes.action.*;
@@ -42,7 +42,7 @@ public class SecurityActionBean extends BaseActionBean {
 
     @DefaultHandler
     public Resolution view() throws IOException {
-        FileReader fileReader = new FileReader();
+        BytesFileReader fileReader = new BytesFileReader();
         if (StringUtils.isNotBlank(type)) {
             if (type.equals(ROLES)) {
                 byte[] bytes = fileReader.readFileFromClasspathAsBytes("roles.xml");

@@ -21,7 +21,7 @@ public class Comment extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private User createdBy;
     @OneToOne(fetch = FetchType.EAGER)
-    private Comment parentNote;
+    private Comment parent;
     @Column
     private LocalDateTime archivedDate;
 }

@@ -27,5 +27,5 @@ public class HazelcastService {
         IMap map = hazelcastInstance.getMap(SESSION_MAP);
         map.put(sessionId, user.getId());
     }
-    public static final String SESSION_MAP = "paystream_session_map";
+    public static final String SESSION_MAP = "recorder_session_map";
 }

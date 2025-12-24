@@ -12,7 +12,7 @@
 
     <artifactId>recorder</artifactId>
     <packaging>war</packaging>
-    <name>PayStream Vending Webapp</name>
+    <name>Recorder Vending Webapp</name>
 
     <dependencies>
         <dependency>

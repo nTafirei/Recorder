@@ -5,7 +5,7 @@ import net.sourceforge.stripes.action.UrlBinding;
 
 @UrlBinding("/web/my-recordings")
 public class MyRecordingsActionBean extends BaseRecordingsActionBean {
-
+    @Override
     public User getUser() {
         return getCurrentUser();
     }

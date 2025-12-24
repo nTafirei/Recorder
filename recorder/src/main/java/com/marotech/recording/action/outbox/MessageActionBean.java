@@ -52,7 +52,7 @@ public class MessageActionBean extends BaseActionBean {
 
     @HandlesEvent(SENT)
     public Resolution sent() throws Exception {
-        return new ForwardResolution(JSP);
+        return new ForwardResolution(SENT_JSP);
     }
 
     public Boolean getHasErrors() {
@@ -66,7 +66,7 @@ public class MessageActionBean extends BaseActionBean {
 
     @Override
     protected String getErrorPage() {
-        return JSP;
+        return SENT_JSP;
     }
 
     @SpringBean
@@ -74,5 +74,5 @@ public class MessageActionBean extends BaseActionBean {
     public static final String NEXT_PAGE = "/web/message/sent";
     public static final String SENT = "sent";
     private static final String[] ROLES = {Constants.SYS_ADMIN, Constants.CUSTOMER_SERVICE};
-    public static final String JSP = "/WEB-INF/jsp/outbox/sent.jsp";
+    public static final String SENT_JSP = "/WEB-INF/jsp/outbox/sent.jsp";
 }

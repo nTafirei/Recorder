@@ -54,8 +54,12 @@ public class J2EESecurityManager {
 
         User user = getUserAuthenticated(bean);
 
-        if (reloadUser) {
+        if (reloadUser && user != null) {
             user = (User) repositoryService.getRepository().findById(user.getId()).get();
+        }
+
+        if(user == null){
+            return  false;
         }
 
         String tagName = tag.getName();
@@ -86,7 +90,7 @@ public class J2EESecurityManager {
             return false;
         }
 
-        if (!element.hasRoles() || user == null) {
+        if (!element.hasRoles()) {
             return false;
         }
 

@@ -36,7 +36,7 @@ public class OrgDataSet {
             if (num > 0) {
                 return;
             }
-            String adminEmail = "paystream_system_admin@paystream.co." + ext;
+            String adminEmail = "recorder_system_admin@recorder.co." + ext;
             createAdminUser(adminEmail);
 
             if (!isProd) {

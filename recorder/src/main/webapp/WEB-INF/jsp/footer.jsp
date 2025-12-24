@@ -42,7 +42,7 @@
                                        <li class="icon solid fa-phone">
                                            <a href="tel:+263712571508">(+263) 71 257 1508</a><br/>
                                        <li class="icon solid fa-envelope">
-                                           <a href="mailto:admin@paystream.co.zw">admin@paystream.co.zw</a>
+                                           <a href="mailto:admin@recorder.co.zw">admin@recorder.co.zw</a>
                                        </li>
                                    </ul>
                                </div>

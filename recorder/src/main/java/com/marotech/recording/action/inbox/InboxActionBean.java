@@ -31,7 +31,7 @@ public class InboxActionBean extends BaseActionBean {
     @HandlesEvent(DELETE)
     public Resolution delete() {
         repositoryService.getRepository().delete(notification);
-        return new RedirectResolution("/web/inbox");
+        return new RedirectResolution(LIST);
     }
 
     public long getNotificationsSize() {
@@ -50,5 +50,7 @@ public class InboxActionBean extends BaseActionBean {
 
     @SpringBean
     private RepositoryService repositoryService;
+
+    private static final String LIST = "/web/inbox";
     private static final String LIST_JSP = "/WEB-INF/jsp/inbox/list.jsp";
 }

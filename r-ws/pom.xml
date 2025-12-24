@@ -12,8 +12,8 @@
     <groupId>com.marotech.vend</groupId>
     <artifactId>r-ws</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>PayStream Web Services</name>
-    <description>PayStream Web Services</description>
+    <name>Recorder Web Services</name>
+    <description>Recorder Web Services</description>
     <properties>
         <java.version>17</java.version>
         <springdoc.version>2.8.13</springdoc.version>

@@ -8,7 +8,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 @ToString
 @NoArgsConstructor
 @EqualsAndHashCode
-@Node("account")
+@Node("recording")
 public class NeoRecording extends BaseNeoEntity{
 
     private String name;

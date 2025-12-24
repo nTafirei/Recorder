@@ -68,7 +68,8 @@ public class MyRecordingsController extends BaseController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
             LocalDateTime updatedTime = appSession.getDateLastUpdated();
-            LocalDateTime expiryTime = updatedTime.plusSeconds(config.getIntegerProperty(APP_SESSION_TTL));
+            LocalDateTime expiryTime = updatedTime.
+                    plusSeconds(config.getIntegerProperty(APP_SESSION_TTL));
             if (LocalDateTime.now().isAfter(expiryTime)) {
                 response.setCode(HttpCode.UN_AUTHORISED);
                 response.setMessage("Specified token has expired. Please log in again");
