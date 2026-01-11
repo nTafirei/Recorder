@@ -14,7 +14,7 @@
                     <br>Recorder is a corruption reduction tool. Simple! <br/>
                     The Recorder platform allows you to record your conversations using our mobile app discreetly.
                     <br/>
-                    The conversation is automatically saved on our system in the cloud without further action from you.
+                    The conversation is automatically saved in our computers in the cloud without further action from you.
                     <br/>
                     The intention is to allow people to record fraud, bribes ad extortion. The recordings can then be
                     used in reporting to ZACC, the police as well as be used in a court of law.
@@ -39,7 +39,7 @@
 
 <br/><br/>
                     <strong>Benefits:</strong><br/>
-                    You protect yourself from bribes and extortion by the police and civil servants
+                    You protect yourself from bribes and extortion by the police and civil servants.
                 </div>
             </div>
         </div>

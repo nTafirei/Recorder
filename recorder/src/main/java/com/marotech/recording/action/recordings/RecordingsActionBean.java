@@ -1,6 +1,7 @@
 package com.marotech.recording.action.recordings;
 
 import com.marotech.recording.action.BaseActionBean;
+import com.marotech.recording.action.SkipAuthentication;
 import com.marotech.recording.action.converters.RecordingConverter;
 import com.marotech.recording.model.Recording;
 import com.marotech.recording.service.RepositoryService;
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@SkipAuthentication
 @UrlBinding("/web/recordings")
 public class RecordingsActionBean extends BaseActionBean {
 
@@ -108,7 +110,7 @@ public class RecordingsActionBean extends BaseActionBean {
         if (StringUtils.isNoneBlank(startDate, endDate)) {
             return startDate + " and " + endDate;
         }
-        return "up to" + getFormattedDay();
+        return "up to " + getFormattedDay();
     }
 
     public String getFormattedDay() {

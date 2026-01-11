@@ -18,20 +18,10 @@ public class Recording extends BaseEntity {
     private String name;
     @Column
     private String deviceLocation;
-    @NotNull
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-    @NotNull
-    @ToString.Exclude
-    @OneToOne(fetch = FetchType.EAGER)
-    private Attachment attachment;
-
-    public Boolean getIsAudio(){
-        return attachment.getContentType().toLowerCase().startsWith("audio");
-    }
-    public Boolean getIsVideo(){
-        return attachment.getContentType().toLowerCase().startsWith("video");
-    }
+    @Column(nullable = false)
+    private String mediaType;
 }

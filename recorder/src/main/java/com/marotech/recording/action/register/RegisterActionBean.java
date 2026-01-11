@@ -70,7 +70,6 @@ public class RegisterActionBean extends BaseActionBean {
     @Setter
     @Validate(on = SAVE, required = true)
     private String mobileNumber;
-
     @Getter
     @Setter
     @Validate(on = SAVE, required = true)
@@ -214,7 +213,7 @@ public class RegisterActionBean extends BaseActionBean {
             activity.setTitle(user.getFullName() + " registered on line on " + LocalDate.now());
             repositoryService.save(activity);
         }
-        return new RedirectResolution(PENDING);
+        return new RedirectResolution(INBOX);
     }
 
     private static final String[] ROLES = {Constants.SYS_ADMIN, Constants.CUSTOMER_SERVICE};
@@ -246,6 +245,6 @@ public class RegisterActionBean extends BaseActionBean {
     @SpringBean
     private RepositoryService repositoryService;
 
-    private static final String PENDING = "/web/inbox/verification-pending";
+    private static final String INBOX = "/web/inbox/list";
     private static final String REGISTER_JSP = "/WEB-INF/jsp/register/register.jsp";
 }

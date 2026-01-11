@@ -79,17 +79,9 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
             }
             AuthUser authUser = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
 
-            Attachment attachment = new Attachment();
-            byte[] array = baos.toByteArray();
-            attachment.setData(array);
-            attachment.setContentType(contentType);
-            attachment.setSize(array.length);
-            attachment.setName(fileName);
-            repositoryService.save(attachment);
-
             Recording recording = new Recording();
-            recording.setAttachment(attachment);
             recording.setUser(authUser.getUser());
+            recording.setName(fileName);
             recording.setDeviceLocation(location);
             repositoryService.save(recording);
 
@@ -98,7 +90,7 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
                 User user = authUser.getUser();
                 activity.setActivityType(ActivityType.UPLOADED_RECORDING);
                 activity.setActor(user);
-                activity.setAttachment(attachment);
+                activity.setTitle(recording.getName());
                 activity.setTitle(user.getFullName()
                         + " for " + user.getFullName() + " on " + LocalDate.now());
                 repositoryService.save(activity);

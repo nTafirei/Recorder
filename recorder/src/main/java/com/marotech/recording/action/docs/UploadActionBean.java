@@ -59,12 +59,12 @@ public class UploadActionBean extends BaseActionBean {
             byte[] bytes = inputStream.readAllBytes();
             List<String> types = getContentTypes();
 
-/*            if (!types.contains(fileBean.getContentType())) {
+            if (!types.contains(fileBean.getContentType())) {
                 getContext().getValidationErrors().add("fileBean",
                         new SimpleError("Files of type " + fileBean.getContentType() +
                                 " cannot be accepted. Please try again with an audio or video file"));
                 return new ForwardResolution(JSP);
-            }*/
+            }
             createDocument(bytes);
             message = "File has been accepted for processing";
         } catch (Exception e) {
@@ -86,12 +86,12 @@ public class UploadActionBean extends BaseActionBean {
 
     private void createDocument(byte[] bytes) {
 
-        Attachment attachment = new Attachment();
+/*        Attachment attachment = new Attachment();
         attachment.setData(bytes);
         attachment.setContentType(fileBean.getContentType());
         attachment.setSize(fileBean.getSize());
         attachment.setName(fileBean.getFileName());
-        repositoryService.save(attachment);
+        repositoryService.save(attachment);*/
         String path = config.getProperty("app.audio.storage.path");
         try {
             BufferedWriter writer = new BufferedWriter(
@@ -102,16 +102,16 @@ public class UploadActionBean extends BaseActionBean {
             LOG.error("Error", ex);
         }
         Recording recording = new Recording();
-        recording.setAttachment(attachment);
         recording.setUser(getCurrentUser());
         recording.setName(fileBean.getFileName());
+        recording.setMediaType(fileBean.getContentType());
         repositoryService.save(recording);
 
         if (shouldAudit()) {
             Activity activity = new Activity();
             activity.setActivityType(ActivityType.UPLOADED_RECORDING);
             activity.setActor(getCurrentUser());
-            activity.setAttachment(attachment);
+            activity.setTitle(fileBean.getFileName());
             activity.setTitle(getCurrentUser().getFullName()
                     + " for " + getCurrentUser().getFullName() + " on " + LocalDate.now());
             repositoryService.save(activity);

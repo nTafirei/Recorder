@@ -20,18 +20,12 @@
                     <s:form action="/web/register" name="createForm" id="createForm"
                             method="post">
                          <input type="hidden" name="_eventName" id="_eventName" value="save"/>
-                         <input type="hidden" name="regType" id="regType" value="${actionBean.regType}"/>
 
                         <table class="alternating">
                             <thead>
                             <tr>
                                 <th colspan="2">
-                                    <c:if test="${actionBean.vendorsSize == 0}">
                                         <u><fmt:message key="registerheaderlabel"/></u>
-                                    </c:if>
-                                    <c:if test="${actionBean.vendorsSize > 0}">
-                                        <u><fmt:message key="registerasagentheaderlabel"/></u>
-                                    </c:if>
                                 </th>
                             </tr>
                             </thead>
@@ -87,31 +81,6 @@
                                     name="mobileNumber" value="${actionBean.mobileNumber}"/>
                                 </td>
                             </tr>
-                            <c:if test="${actionBean.vendorsSize > 0}">
-                                <tr valign="top">
-                                    <td nowrap="nowrap">
-                                        <fmt:message key="vendorlabel"/>
-                                    </td>
-                                     <td>
-                                             <c:set var="selectedValue" value=""/>
-                                             <s:select name="vendor" id="vendor" style="background-color:#F0E68C">
-                                                   <s:option value="">
-                                                   <fmt:message key="selectvendorlabel"/></s:option>
-                                                   <c:forEach items="${actionBean.vendors}" var="vendor"
-                                                              varStatus="loopStatus">
-
-                                                       <c:if test="${actionBean.vendor !=null &&
-                                                             actionBean.vendor.id == vendor.id}">
-                                                         <c:set var="selectedValue" value="selected"/>
-                                                      </c:if>
-                                                       <option value="${vendor.id}" ${selectedValue}/>
-                                                      ${vendor.name}
-                                                      <c:set var="selectedValue" value=""/>
-                                                   </c:forEach>
-                                             </s:select>
-                                     </td>
-                                 </tr>
-                            </c:if>
                             <tr valign="top">
                                 <td>
                                     <fmt:message key="doblabel"/> (DD-MM-YYYY)

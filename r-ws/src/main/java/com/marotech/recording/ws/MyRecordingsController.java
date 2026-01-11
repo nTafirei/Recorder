@@ -121,6 +121,7 @@ public class MyRecordingsController extends BaseController {
         RecordingDTO dto = new RecordingDTO();
         dto.setId(recording.getId());
         dto.setName(recording.getName());
+        dto.setMimeType(recording.getMediaType());
         dto.setDeviceLocation(recording.getDeviceLocation());
         dtos.add(dto);
         return dtos;

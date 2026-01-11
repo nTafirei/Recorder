@@ -26,10 +26,10 @@
 
                  <c:if test="${actionBean.isLoggedIn == false}">
                     <c:if test="${actionBean.navSection == 'register'}">
-                        <li class="current"><d:link href="/web/pre-register"><fmt:message key="registermenu"/></d:link></li>
+                        <li class="current"><d:link href="/web/register"><fmt:message key="registermenu"/></d:link></li>
                     </c:if>
                     <c:if test="${actionBean.navSection != 'register'}">
-                            <li ><d:link href="/web/pre-register"><fmt:message key="registermenu"/></d:link></li>
+                            <li ><d:link href="/web/register"><fmt:message key="registermenu"/></d:link></li>
                     </c:if>
                 </c:if>
                         <c:if test="${actionBean.navSection == 'tools'}">
@@ -38,7 +38,12 @@
                          <c:if test="${actionBean.navSection != 'tools'}">
                              <li><d:link href="/web/tools"><fmt:message key="toolslabel"/></d:link></li>
                          </c:if>
-
+                         <c:if test="${actionBean.navSection == 'recordings'}">
+                             <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
+                         <c:if test="${actionBean.navSection != 'recordings'}">
+                             <li><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
+                         </c:if>
                 <c:if test="${actionBean.isLoggedIn == true}">
                     <c:if test="${actionBean.navSection == 'inbox'}">
                         <li class="current"><d:link href="/web/inbox"><fmt:message key="inboxmenulabel"/></d:link></li>
@@ -69,13 +74,6 @@
                          </c:if>
                          <c:if test="${actionBean.navSection != 'uploads'}">
                              <li><d:link href="/web/upload"><fmt:message key="uploadlabel"/></d:link></li>
-                         </c:if>
-
-                         <c:if test="${actionBean.navSection == 'recordings'}">
-                             <li class="current"><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
-                         </c:if>
-                         <c:if test="${actionBean.navSection != 'recordings'}">
-                             <li><d:link href="/web/recordings"><fmt:message key="recordingslabel"/></d:link></li>
                          </c:if>
 
                          <c:if test="${actionBean.navSection == 'my-recordings'}">

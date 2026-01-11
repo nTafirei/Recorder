@@ -12,7 +12,7 @@
                 http://camel.apache.org/schema/spring
                 http://camel.apache.org/schema/spring/camel-spring.xsd">
 
-    <import resource="mysql-spring-db.xml"/>
+    <import resource="hsqldb-spring-db.xml"/>
 
     <tx:annotation-driven/>
     <context:annotation-config/>

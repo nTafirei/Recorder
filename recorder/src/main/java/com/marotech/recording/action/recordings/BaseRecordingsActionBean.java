@@ -18,8 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-public abstract class BaseRecordingsActionBean extends BaseActionBean {
+abstract class BaseRecordingsActionBean extends BaseActionBean {
 
     @Getter
     private List<Recording> recordings;
@@ -116,7 +115,7 @@ public abstract class BaseRecordingsActionBean extends BaseActionBean {
     }
 
     public String getFormattedDay() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern(PATTERN);
         return fmt.format(LocalDate.now());
     }
 
