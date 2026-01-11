@@ -102,7 +102,7 @@ public class UploadActionBean extends BaseActionBean {
             LOG.error("Error", ex);
         }
         Recording recording = new Recording();
-        recording.setUser(getCurrentUser());
+        recording.setMobileNumber(getCurrentUser().getMobileNumber());
         recording.setName(fileBean.getFileName());
         recording.setMediaType(fileBean.getContentType());
         repositoryService.save(recording);

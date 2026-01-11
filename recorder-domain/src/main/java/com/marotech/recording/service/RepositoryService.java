@@ -91,17 +91,17 @@ public class RepositoryService {
 
     //---------------------------------------------------------------------
     public long countRecordingsForUser(User user) {
-        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 ", Long.class).
-                setParameter(1, user.getId())
+        return entityManager.createQuery("SELECT count(id) from Recording u where u.mobileNumber =?1 ", Long.class).
+                setParameter(1, user.getMobileNumber())
                 .getSingleResult();
     }
 
     public List<Recording> fetchRecordingsForUser(User user, LocalDate fromDate,
                                                   LocalDate toDate, Page page) {
-        return entityManager.createQuery("SELECT u from Recording u where u.user.id =?1 " +
+        return entityManager.createQuery("SELECT u from Recording u where u.mobileNumber =?1 " +
                         "AND u.dateCreated BETWEEN ?2 and ?3 " +
                         "ORDER by dateCreated DESC", Recording.class).
-                setParameter(1, user.getId()).
+                setParameter(1, user.getMobileNumber()).
                 setParameter(2, fromDate.atStartOfDay()).
                 setParameter(3, toDate.plusDays(1).atStartOfDay())
                 .setFirstResult(page.getFirstResultIndex())
@@ -110,9 +110,9 @@ public class RepositoryService {
     }
 
     public List<Recording> fetchRecordingsForUser(User user, Page page) {
-        return entityManager.createQuery("SELECT u from Recording u where u.user.id =?1 " +
+        return entityManager.createQuery("SELECT u from Recording u where u.mobileNumber =?1 " +
                         "ORDER by dateCreated DESC", Recording.class).
-                setParameter(1, user.getId())
+                setParameter(1, user.getMobileNumber())
                 .setFirstResult(page.getFirstResultIndex())
                 .setMaxResults(page.getItemsPerPage())
                 .getResultList();
@@ -120,9 +120,9 @@ public class RepositoryService {
 
     public long countRecordingsForUser(User user, LocalDate fromDate,
                                        LocalDate toDate) {
-        return entityManager.createQuery("SELECT count(id) from Recording u where u.user.id =?1 " +
+        return entityManager.createQuery("SELECT count(id) from Recording u where u.mobileNumber =?1 " +
                         "AND u.dateCreated BETWEEN ?2 and ?3", Long.class).
-                setParameter(1, user.getId()).
+                setParameter(1, user.getMobileNumber()).
                 setParameter(2, fromDate.atStartOfDay()).
                 setParameter(3, toDate.plusDays(1).atStartOfDay())
                 .getSingleResult();

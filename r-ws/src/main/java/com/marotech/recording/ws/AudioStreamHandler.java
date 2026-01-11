@@ -80,8 +80,11 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
             AuthUser authUser = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
 
             Recording recording = new Recording();
-            recording.setUser(authUser.getUser());
+            if(authUser != null) {
+                recording.setUser(authUser.getUser());
+            }
             recording.setName(fileName);
+            recording.setMediaType(contentType);
             recording.setDeviceLocation(location);
             repositoryService.save(recording);
 

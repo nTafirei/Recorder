@@ -18,10 +18,8 @@ public class Recording extends BaseEntity {
     private String name;
     @Column
     private String deviceLocation;
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
-
+    @Column(nullable = false)
+    private String mobileNumber;
     @Column(nullable = false)
     private String mediaType;
 }
