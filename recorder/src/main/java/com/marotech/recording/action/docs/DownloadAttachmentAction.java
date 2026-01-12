@@ -1,6 +1,7 @@
 package com.marotech.recording.action.docs;
 
 import com.marotech.recording.action.BaseActionBean;
+import com.marotech.recording.action.SkipAuthentication;
 import com.marotech.recording.action.converters.AttachmentConverter;
 import com.marotech.recording.model.Attachment;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.validation.Validate;
 
 import java.io.ByteArrayInputStream;
-
+@SkipAuthentication
 @UrlBinding("/web/download")
 public class DownloadAttachmentAction extends BaseActionBean {
 

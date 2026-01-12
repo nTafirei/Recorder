@@ -22,4 +22,6 @@ public class Recording extends BaseEntity {
     private String mobileNumber;
     @Column(nullable = false)
     private String mediaType;
+    @Column
+    private String thumbnail;
 }

@@ -21,8 +21,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 @WebServlet
@@ -98,6 +102,11 @@ public class UploadActionBean extends BaseActionBean {
                     new FileWriter(path + File.separator + fileBean.getFileName()));
             writer.write(new String(bytes, StandardCharsets.UTF_8));
             writer.close();
+
+            //create a thumbnail of the media
+            //byte[] imageBytes = Base64.getDecoder().decode(imageDataBase64);
+            //Path thumbPath = Paths.get(uploadDir + "/" + recording.getId() + "_" + recording.getName() + ".jpg");
+            //Files.write(thumbPath, imageBytes);
         } catch (Exception ex) {
             LOG.error("Error", ex);
         }

@@ -85,7 +85,7 @@ public class RecordController extends BaseController {
             }
             Recording recording = new Recording();
             recording.setName(dto.getName());
-            recording.setUser(user);
+            recording.setMobileNumber(dto.getMobileNumber());
             recording.setDeviceLocation(dto.getDeviceLocation());
             repositoryService.save(recording);
 

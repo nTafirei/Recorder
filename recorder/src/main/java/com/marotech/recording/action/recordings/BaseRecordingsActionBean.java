@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-abstract class BaseRecordingsActionBean extends BaseActionBean {
+public abstract class BaseRecordingsActionBean extends BaseActionBean {
 
     @Getter
     private List<Recording> recordings;
@@ -111,11 +111,14 @@ abstract class BaseRecordingsActionBean extends BaseActionBean {
         if (StringUtils.isNoneBlank(startDate, endDate)) {
             return startDate + " and " + endDate;
         }
-        return "up to" + getFormattedDay();
+        if(getUser() != null){
+            return getUser().getFullName() + " for up to " + getFormattedDay();
+        }
+        return " up to " + getFormattedDay();
     }
 
     public String getFormattedDay() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern(PATTERN);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
         return fmt.format(LocalDate.now());
     }
 
@@ -162,6 +165,6 @@ abstract class BaseRecordingsActionBean extends BaseActionBean {
 
     @SpringBean
     private RepositoryService repositoryService;
-    private static final String PATTERN = "dd-MM-yyyy";
+    private static final String PATTERN = "dd MMM yyyy";
     public static DateTimeFormatter FMT = DateTimeFormatter.ofPattern(PATTERN);
 }

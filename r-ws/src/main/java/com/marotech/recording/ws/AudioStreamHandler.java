@@ -80,22 +80,24 @@ public class AudioStreamHandler extends BinaryWebSocketHandler {
             AuthUser authUser = repositoryService.fetchAuthUserByMobileNumber(mobileNumber);
 
             Recording recording = new Recording();
-            if(authUser != null) {
-                recording.setUser(authUser.getUser());
-            }
             recording.setName(fileName);
             recording.setMediaType(contentType);
+            recording.setMobileNumber(mobileNumber);
             recording.setDeviceLocation(location);
             repositoryService.save(recording);
 
             if (shouldAudit()) {
                 Activity activity = new Activity();
-                User user = authUser.getUser();
+                if(authUser != null) {
+                    User user = authUser.getUser();
+                    activity.setActor(user);
+                    activity.setTitle(user.getFullName() + " uploaded " + fileName + " on " + LocalDate.now());
+
+                }else{
+                    activity.setTitle(mobileNumber + " uploaded " + fileName + " on " + LocalDate.now());
+                }
                 activity.setActivityType(ActivityType.UPLOADED_RECORDING);
-                activity.setActor(user);
                 activity.setTitle(recording.getName());
-                activity.setTitle(user.getFullName()
-                        + " for " + user.getFullName() + " on " + LocalDate.now());
                 repositoryService.save(activity);
             }
         }

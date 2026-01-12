@@ -80,6 +80,7 @@
         <angus.mail.version>2.0.5</angus.mail.version>
         <poi.ooxml.schemas.version>4.1.2</poi.ooxml.schemas.version>
         <pdfbox.table.version>1.7.0</pdfbox.table.version>
+        <jaudiotagger.version>2.0.3</jaudiotagger.version>
         <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
         <jakarta.servlet.jsp.version>2.0.0</jakarta.servlet.jsp.version>
         <proguard.maven.plugin.version>2.3.1</proguard.maven.plugin.version>
@@ -98,6 +99,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>${jaudiotagger.version}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>

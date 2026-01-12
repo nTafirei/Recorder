@@ -109,6 +109,10 @@
                               </tr>
                             <tr>
                                 <td align="right" colspan="3">
+                                                      <d:link
+                                                          href="/web/user-recordings?user=${actionBean.user.id}">
+                                                          <fmt:message key="userrecordingslabel"/>
+                                                      </d:link> |
                                  <security:protected-element name="manage-roles">
                                                       <d:link
                                                           href="/web/assign-role/${actionBean.user.id}">

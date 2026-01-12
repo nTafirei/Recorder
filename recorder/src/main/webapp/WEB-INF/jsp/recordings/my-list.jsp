@@ -16,7 +16,7 @@
                 <div id="content">
                     <s:errors/>
                     <c:if test="${empty actionBean.recordings}">
-                        <fmt:message key="norecordingsfound"/> for ${actionBean.user.fullName} for ${actionBean.searchDates}
+                        <fmt:message key="norecordingsfound"/> for ${actionBean.searchDates}
                     </c:if>
                         <s:form action="${actionBean.listPage}" name="createForm" id="createForm" method="post">
                             <input type="hidden" name="user" id="user" value="${actionBean.user.id}"/>

@@ -114,7 +114,7 @@ public class RecordingsActionBean extends BaseActionBean {
     }
 
     public String getFormattedDay() {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
         return fmt.format(LocalDate.now());
     }
 
@@ -158,9 +158,11 @@ public class RecordingsActionBean extends BaseActionBean {
     public String getPageTitle() {
         return "Recordings";
     }
+
     public String getJsp() {
         return LIST_JSP;
     }
+
     @SpringBean
     private RepositoryService repositoryService;
     private static final String LIST_JSP = "/WEB-INF/jsp/recordings/list.jsp";
